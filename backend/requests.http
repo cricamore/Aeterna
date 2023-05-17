@@ -1,0 +1,30 @@
+###
+POST http://localhost:4000/api/usuarios HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Cristian",
+    "apellido": "Montaño",
+    "email": "cristian@gmail.com",
+    "cedula": 1005832360
+}
+
+###
+GET http://localhost:4000/api/usuarios HTTP/1.1
+
+###
+GET http://localhost:4000/api/usuarios/64642f418983d3e265b9add0 HTTP/1.1
+
+###
+PUT http://localhost:4000/api/usuarios/64642f418983d3e265b9add0 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Camilo",
+    "apellido": "Renteria",
+    "email": "camilo@gmail.com",
+    "cedula": 1005832361
+}
+
+###
+DELETE http://localhost:4000/api/usuarios/64643414130998c703a4487d HTTP/1.1
