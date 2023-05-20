@@ -12,6 +12,25 @@ router.post('/usuarios', (req, res) => {
       .catch((error) => res.json({message: error}));
 })
 
+router.post('/loginusuario', (req, res) => {
+  const { email, password } = req.body;
+
+  userSchema.findOne({ email, password })
+    .then((user) => {
+      if (user) {
+        // El usuario existe en la base de datos
+        res.json({ message: 'Usuario encontrado' });
+      } else {
+        // El usuario no existe en la base de datos
+        res.json({ message: 'Usuario no encontrado' });
+      }
+    })
+    .catch((error) => {
+      // Manejo de errores en caso de que ocurra algún problema con la base de datos
+      res.json({ message: error });
+    });
+});
+
 //get all users
 router.get('/usuarios', (req, res) => {
     userSchema
@@ -47,7 +66,5 @@ router.delete('/usuarios/:id', (req, res) => {
       .then((data) => res.json(data))
       .catch((error) => res.json({message: error}));
 })
-
-
 
 module.exports = router;
