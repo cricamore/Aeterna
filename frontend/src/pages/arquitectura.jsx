@@ -3,6 +3,7 @@ import { Container,
     AppBar, Toolbar } from "@mui/material";
 import Image from "next/image";
 import aeterna from "../images/aeterna.png";
+import Experience from "./Models/Experience";
 
 export default function Hola(){
     return(
@@ -18,6 +19,7 @@ export default function Hola(){
                     {/* </Box> */}
                 </Toolbar>
             </AppBar>
+            <Experience/>
         </div>
        
     )}
