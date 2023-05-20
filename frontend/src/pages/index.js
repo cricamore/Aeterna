@@ -28,6 +28,8 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import { createUser_Front } from "../functions/sqlFunctions"
 import { styled } from '@mui/material/styles';
+import aeterna from "../images/aeterna.png";
+import Experience from "./Models/Experience";
 
 
 const FullPageContainer = styled(Box)`
@@ -137,6 +139,9 @@ const Principal = () => {
       <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Box sx={{mt: 2}}>
+                  <Image src={aeterna} width='150' height='100' alt="icon"/>
+                </Box>
                 <IconButton edge="start" color="inherit" onClick={handleToggleRegister}>
                 <Add style={{ fontSize: '100px' }} />
                 </IconButton>
@@ -239,13 +244,14 @@ const Principal = () => {
           </div>
         </Drawer>
       </AppBar>
-      <FullPageContainer>
+      <Experience/>
+      {/* <FullPageContainer>
         <ImageContainer>
           <Box>
             <Image src={fondo} style={{ width: '110%', height: '100%' }} alt="icon"/>
           </Box>
         </ImageContainer>
-      </FullPageContainer>
+      </FullPageContainer> */}
     </div>
   );
 };
