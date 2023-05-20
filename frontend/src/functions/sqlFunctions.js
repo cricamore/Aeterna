@@ -1,6 +1,6 @@
 async function createUser_Front(nombre, apellido, email, password) {
     try {
-        const response = await fetch(`http://localhost:4000/api/usuarios`, {
+        const response = await fetch(`http://localhost:4000/api/registrarusuario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,9 +48,6 @@ async function login_usuario(email, password) {
         const data = await response.json(); // convierte la respuesta del servidor a JSON
 
         if(response.status === 200) {
-            console.log(JSON.stringify(data))
-            alert('Logueado con email: ' + email +' y contraseña ' + password);
-            console.log('soy el data' + data)
             return data.message;
         } else {
             alert("Ha ocurrido un error.");

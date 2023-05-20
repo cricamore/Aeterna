@@ -31,6 +31,22 @@ router.post('/loginusuario', (req, res) => {
     });
 });
 
+router.post('/registrarusuario', (req, res) => {
+  const { nombre, apellido, email, password } = req.body;
+
+  userSchema.create({ nombre, apellido, email, password })
+    .then((user) => {
+      // El usuario se ha registrado correctamente
+      res.json({ message: 'Usuario registrado exitosamente' });
+    })
+    .catch((error) => {
+      // Manejo de errores en caso de que ocurra algún problema con la base de datos
+      res.json({ message: error });
+    });
+});
+
+
+
 //get all users
 router.get('/usuarios', (req, res) => {
     userSchema
