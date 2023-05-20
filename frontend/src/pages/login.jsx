@@ -42,6 +42,7 @@ export default function Login(){
       });
 
 
+
     return(
         <div style={{ display: 'flex' }}>
             <Box sx={{height: '100%', 
@@ -65,8 +66,8 @@ export default function Login(){
                     <Box sx={{ alignItems:'center', justifyContent:'center', mt:4, display: 'flex', flexDirection: 'column'}}>
                         <TextField id="outlined-basic" 
                           label="Correo Electrónico" 
-                          variant="outlined" 
-                          sx={{borderRadius: '20px', color:"#D4AF37", backgroundColor:'white'}}
+                          variant="filled" 
+                          sx={{borderRadius: '4px', backgroundColor:'white'}}
                           name="correo"
                           value={formik.values.correo}
                           onChange={formik.handleChange}
@@ -74,8 +75,9 @@ export default function Login(){
                         <TextField
                           id="outlined-password-input"
                           label="Contraseña"
+                          variant="filled" 
                           type="password"
-                          sx={{borderRadius: '20px', mt: 4, color:"#D4AF37", backgroundColor:'white'}}
+                          sx={{borderRadius: '4px', mt: 4, backgroundColor:'white'}}
                           name="password"
                           value={formik.values.password}
                           onChange={formik.handleChange}
