@@ -2,7 +2,7 @@ import { CameraControls, OrbitControls, PerspectiveCamera, useGLTF } from '@reac
 import { Perf } from 'r3f-perf'
 import { DoubleSide, RepeatWrapping } from "three";
 import { useTexture } from "@react-three/drei";
-// import Building from './building';
+import Building from './building';
 // import { Statue } from './statue';
 
 export default function Terrain(){
@@ -38,10 +38,10 @@ export default function Terrain(){
                 <planeGeometry args={[1, 1]} />
                 <meshStandardMaterial {...props} side={DoubleSide}/>
             </mesh>
-            {/* <mesh scale={0.2}>
+            <mesh scale={0.2}>
                 <Building/>
             </mesh>
-            <mesh position={[-4, 3.5, 2.5]} rotation-x={ - Math.PI * 1 }>
+            {/* <mesh position={[-4, 3.5, 2.5]} rotation-x={ - Math.PI * 1 }>
                 <Statue />
             </mesh> */}
         </group>
