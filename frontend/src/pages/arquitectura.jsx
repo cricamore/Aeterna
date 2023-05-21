@@ -3,7 +3,7 @@ import { Container,
     AppBar, Toolbar } from "@mui/material";
 import Image from "next/image";
 import aeterna from "../images/aeterna.png";
-import Experience from "./Models/Experience";
+import Experience from "./three/Experience";
 
 export default function Hola(){
     return(
@@ -12,7 +12,7 @@ export default function Hola(){
                 <Toolbar>
                     {/* <Box width={70} height={50}> */}
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Box sx={{mt: 2}}>
+                        <Box sx={{mt: 2, justifyContent:'center', alignItems:'center'}}>
                             <Image src={aeterna} width='150' height='100' alt="icon"/>
                         </Box>
                         </div>
