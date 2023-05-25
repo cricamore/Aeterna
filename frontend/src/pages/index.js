@@ -138,11 +138,15 @@ const Principal = () => {
     <div>
       <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
         <Toolbar>
+           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+             <Box sx={{ mt: 3, marginLeft: '-18px'}}>
+                <Image src={aeterna} width='150' height='100' alt="icon" />
+             </Box>
+           </div>
+        </Toolbar>
+        <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{mt: 2}}>
-                  <Image src={aeterna} width='150' height='100' alt="icon"/>
-                </Box>
-                <IconButton edge="start" color="inherit" onClick={handleToggleRegister}>
+                <IconButton color="inherit" onClick={handleToggleRegister}>
                 <Add style={{ fontSize: '100px' }} />
                 </IconButton>
                 <Typography variant="subtitle1">CREAR CUENTA</Typography>
@@ -150,7 +154,7 @@ const Principal = () => {
         </Toolbar>
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <IconButton edge="start" color="inherit" onClick={handleToggleLogin}>
+                <IconButton color="inherit" onClick={handleToggleLogin}>
                 <AccountCircle style={{ fontSize: '100px' }} />
                 </IconButton>
                 <Typography variant="subtitle1">INICIAR SESION</Typography>
@@ -244,7 +248,7 @@ const Principal = () => {
           </div>
         </Drawer>
       </AppBar>
-      <Experience/>
+     <Experience/>
       {/* <FullPageContainer>
         <ImageContainer>
           <Box>
