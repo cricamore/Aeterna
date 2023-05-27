@@ -1,4 +1,5 @@
 import Login from "../pages/login";
+import TerminosCondiciones from '../pages/terminosCondiciones';
 import React, { useState } from 'react';
 import {
   AppBar,
@@ -32,24 +33,7 @@ import aeterna from "../images/aeterna.png";
 import Experience from "./three/Experience";
 
 
-const FullPageContainer = styled(Box)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: flex-end;
-  background-color: #13192F;
-`;
 
-const ImageContainer = styled(Box)`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 64px; 
-`;
 
 const Principal = () => {
   const router = useRouter();
@@ -249,13 +233,6 @@ const Principal = () => {
         </Drawer>
       </AppBar>
      <Experience/>
-      {/* <FullPageContainer>
-        <ImageContainer>
-          <Box>
-            <Image src={fondo} style={{ width: '110%', height: '100%' }} alt="icon"/>
-          </Box>
-        </ImageContainer>
-      </FullPageContainer> */}
     </div>
   );
 };

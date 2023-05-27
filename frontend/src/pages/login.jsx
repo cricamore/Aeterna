@@ -34,12 +34,13 @@ export default function Login(){
                 toast.success('Usuario encontrado')
                 
                 setTimeout(() => {
-                  router.push('/arquitectura');
+                  router.push('/main');
                 }, 2000);
             }
             else { toast.error('Usuario no encontrado'); }
         }
       });
+
 
 
 

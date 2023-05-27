@@ -6,7 +6,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 export function Statue(props) {
-  const { nodes, materials } = useGLTF("/static/statue.glb");
+  const { nodes, materials } = useGLTF("/static/estatua.glb");
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -19,4 +19,4 @@ export function Statue(props) {
   );
 }
 
-useGLTF.preload("/static/statue.glb");
+useGLTF.preload("/static/estatua.glb");
