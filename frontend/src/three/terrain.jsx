@@ -55,7 +55,7 @@ export default function Terrain(){
         <group>
           <mesh
             scale={20}
-            position={[0, -8.5, 0]}
+            position={[0, -4, 0]}
             rotation-x={-Math.PI * 0.5}
             receiveShadow
           >
@@ -69,7 +69,7 @@ export default function Terrain(){
             <Building/>
           </mesh>   */}
           <mesh>
-            <Coliseo scale={0.1} position={[-8, 0, 2.5]}/>
+            <Coliseo scale={0.1} position={[-5, 0, 2.5]}/>
           </mesh>
         </group>
       </>

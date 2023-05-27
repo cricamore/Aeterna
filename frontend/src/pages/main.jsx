@@ -4,7 +4,7 @@ import Image from "next/image";
 import aeterna from "../images/aeterna.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from "next/navigation";
-import Experience from "./three/Experience";
+import Experience from "../three/Experience";
 
 const ToolbarWithLogout = () => {
   const router = useRouter();

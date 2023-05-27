@@ -6,8 +6,8 @@ import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Html } from '@react-three/drei';
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
-import papel1 from '../../../../public/static/textures/Torre/papel1.png';
-import papel2 from '../../../../public/static/textures/Torre/papel2.png';
+import papel1 from '../../../public/static/textures/Torre/papel1.png';
+import papel2 from '../../../public/static/textures/Torre/papel2.png';
 import Image from 'next/image';
 
 const style = {

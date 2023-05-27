@@ -6,8 +6,8 @@ import React, { useRef,  useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
 import Image from 'next/image';
-import papel1 from '../../../../public/static/textures/Templo/papel1.png';
-import papel2 from '../../../../public/static/textures/Templo/papel2.png';
+import papel1 from '../../../public/static/textures/Templo/papel1.png';
+import papel2 from '../../../public/static/textures/Templo/papel2.png';
 import { Html } from '@react-three/drei';
 
 export default function Building(props) {
