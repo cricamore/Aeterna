@@ -24,3 +24,5 @@ mongoose.connect(process.env.MONGODB_URI)
 .catch((error) => console.error(error))
 
 app.listen(port, () => console.log('Servidor en el puerto', port))
+
+module.exports = app;
