@@ -58,11 +58,13 @@ export function Coliseo(props) {
         geometry={nodes["10064_colosseum_v1_Iteration0"].geometry}
         material={materials["10064_colosseum"]}
         rotation={[0, 1.57, 0]}
-        scale={0.01}
+        scale={0.005}
       />
     </group>
   );
 }
 
 useGLTF.preload("/static/coliseo.glb");
+
+
 

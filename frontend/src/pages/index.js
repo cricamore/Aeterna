@@ -30,7 +30,7 @@ import { useRouter } from 'next/navigation';
 import { createUser_Front } from "../functions/sqlFunctions"
 import { styled } from '@mui/material/styles';
 import aeterna from "../images/aeterna.png";
-import Experience from "./three/Experience";
+import Experience from "../three/Experience";
 
 
 

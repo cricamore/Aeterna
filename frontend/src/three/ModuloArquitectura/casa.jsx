@@ -5,9 +5,9 @@ import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
 import Image from 'next/image';
-import papel1 from '../../../../public/static/textures/papel1.png';
-import papel2 from '../../../../public/static/textures/papel2.png';
-import papel3 from '../../../../public/static/textures/papel3.png';
+import papel1 from '../../../public/static/textures/papel1.png';
+import papel2 from '../../../public/static/textures/papel2.png';
+import papel3 from '../../../public/static/textures/papel3.png';
 import { Html } from '@react-three/drei';
 
 const style = {

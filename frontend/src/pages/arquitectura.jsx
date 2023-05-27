@@ -5,8 +5,8 @@ import Image from "next/image";
 import aeterna from "../images/aeterna.png";
 import Link from "next/link";
 import { createContext, useContext, useState, useRef } from "react";
-import Experience from "./three/ModuloArquitectura/Experience";
-import Evaluacion from "./three/ModuloArquitectura/evaluacion";
+import Experience from "../three/ModuloArquitectura/Experience";
+import Evaluacion from "../three/ModuloArquitectura/evaluacion";
 
 
 
