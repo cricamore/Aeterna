@@ -1,6 +1,6 @@
 async function createUser_Front(nombre, apellido, email, password) {
     try {
-        const response = await fetch(`http://localhost:4000/api/registrarusuario`, {
+        const response = await fetch(`https://aeterna-production.up.railway.app/api/registrarusuario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function createUser_Front(nombre, apellido, email, password) {
 async function login_usuario(email, password) {
     console.log(email)
     try {
-        const response = await fetch(`http://localhost:4000/api/loginusuario`, {
+        const response = await fetch(`https://aeterna-production.up.railway.app/api/loginusuario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
