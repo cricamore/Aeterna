@@ -20,13 +20,14 @@ export default function Experience() {
             fov: 45,
             near: 0.1,
             far: 200,
-            position: [ - 4, 3, 6 ]
+            position: [ 4, 3, 16 ]
         } }
         >
             <Perf position="top-right" />
             <OrbitControls makeDefault />
-            <directionalLight castShadow castposition={[1, 2, 3]} intensity={1.5} />
-            <ambientLight intensity={0.5} />
+            {/* <directionalLight castShadow castposition={[1, 5, 9]} intensity={1} />
+            <ambientLight intensity={0.2} /> */}
+            <spotLight position={[0, 30, 10]} />
             <Terrain/>
 
         </Canvas>
