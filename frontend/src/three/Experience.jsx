@@ -1,4 +1,4 @@
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Sky } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { Canvas } from '@react-three/fiber'
 import Terrain from './terrain'
@@ -25,11 +25,12 @@ export default function Experience() {
         >
             <Perf position="top-right" />
             <OrbitControls makeDefault />
-            {/* <directionalLight castShadow castposition={[1, 5, 9]} intensity={1} />
-            <ambientLight intensity={0.2} /> */}
-            <spotLight position={[0, 30, 10]} />
-            <Terrain/>
+            <spotLight position={[30, 20, 30]} intensity={0.2} />
+            <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />
+            <ambientLight intensity={0.2} />
 
+            <Terrain/>
+            <Sky/>
         </Canvas>
         
     </>

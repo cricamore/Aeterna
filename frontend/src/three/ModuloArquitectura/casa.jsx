@@ -10,6 +10,9 @@ import papel2 from '../../../public/static/textures/papel2.png';
 import papel3 from '../../../public/static/textures/papel3.png';
 import { Html } from '@react-three/drei';
 
+
+
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -43,8 +46,7 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Casa(props) {
-
+export function Casa({leccionesCompletadas, setLeccionesCompletadas},props) {
     const [modalOpen, setModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [papel1, papel2, papel3];
@@ -57,6 +59,16 @@ export function Casa(props) {
     const handleClose = () => {
       setModalOpen(false);
       setCurrentImageIndex(0)
+
+      const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+      if (todasLasImagenesVistas) {
+        // Marcar la lección como completada
+        setLeccionesCompletadas(prevState => ({
+          ...prevState,
+          leccion1: true,
+        }));
+        console.log("lec",leccionesCompletadas)
+      }
     }
 
     const handleNextImage = () => {
