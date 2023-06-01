@@ -45,7 +45,7 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Coliseo(props) {
+export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
 
   const { nodes, materials } = useGLTF("/static/coliseo.glb");
   const [modalOpen, setModalOpen] = useState(false);
@@ -60,6 +60,16 @@ export function Coliseo(props) {
   const handleClose = () => {
     setModalOpen(false);
     setCurrentImageIndex(0)
+
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion3: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   };
 
   const handleNextImage = () => {

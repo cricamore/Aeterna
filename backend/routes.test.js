@@ -1,6 +1,8 @@
 const request = require('supertest');
 const app = require('./src/index'); // Importa la instancia de tu servidor Express
 const userSchema = require('./src/models/user');
+const http = require('http');
+
 
 describe('POST /loginusuario', () => {
     it('debería responder con el mensaje "Usuario encontrado" si el usuario existe', async () => {

@@ -23,6 +23,9 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Conectado a MongoDB Atlas'))
 .catch((error) => console.error(error))
 
-app.listen(port, () => console.log('Servidor en el puerto', port))
+let server;
+if (process.env.NODE_ENV !== 'test') {
+   server = app.listen(port, () => console.log('Servidor en el puerto', port))
+}
 
-module.exports = app;
+module.exports = server ? server : app;
