@@ -36,7 +36,7 @@ export default function Plano(props) {
         geometry={nodes.Plano.geometry}
         material={nodes.Plano.material}
         position={[0, 0.38, 0]}
-        scale={5}
+        scale={6}
       >
         <meshStandardMaterial {...props1}/>
       </mesh>

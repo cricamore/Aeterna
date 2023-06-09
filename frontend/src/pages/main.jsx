@@ -14,7 +14,9 @@ const ToolbarWithLogout = () => {
 
   return (
     <div>
+        {/* Navbar */}
         <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
+            {/* Logo */}
             <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ mt: 3, marginLeft: '-18px'}}>
@@ -22,6 +24,7 @@ const ToolbarWithLogout = () => {
                 </Box>
             </div>
             </Toolbar>
+            {/* Cerrar sesion */}
             <Toolbar sx={{mt:15}}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <IconButton color="inherit" onClick={handleLogout}>
@@ -31,6 +34,7 @@ const ToolbarWithLogout = () => {
                 </div>
             </Toolbar>
         </AppBar>
+        {/* Modulos */}
         <Experience />
     </div>
   );

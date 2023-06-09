@@ -22,8 +22,8 @@ export default function Plano(props) {
         // opacityMap: PATH + 'opacity.jpg'
     })
 
-    props1.map.repeat.set(8, 8);
-    props1.map.wrapS = props1.map.wrapT = RepeatWrapping;
+    // props1.map.repeat.set(8, 8);
+    // props1.map.wrapS = props1.map.wrapT = RepeatWrapping;
     //>v
     // props1.displacementMap.repeat.set(88, 88);
     // props1.displacementMap.wrapS = props1.displacementMap.wrapT = RepeatWrapping;
@@ -34,8 +34,8 @@ export default function Plano(props) {
     // props1.aoMap.repeat.set(88, 88);
     // props1.aoMap.wrapS = props1.aoMap.wrapT = RepeatWrapping;
 
-    props1.roughnessMap.repeat.set(8, 8);
-    props1.roughnessMap.wrapS = props1.roughnessMap.wrapT = RepeatWrapping;
+    // props1.roughnessMap.repeat.set(8, 8);
+    // props1.roughnessMap.wrapS = props1.roughnessMap.wrapT = RepeatWrapping;
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -43,7 +43,7 @@ export default function Plano(props) {
         geometry={nodes.Plano.geometry}
         material={nodes.Plano.material}
         position={[0, 0.38, 0]}
-        scale={5}
+        scale={6}
       >
         <meshStandardMaterial {...props1}/>
       </mesh>

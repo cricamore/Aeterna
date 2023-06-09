@@ -89,11 +89,20 @@ router.delete('/usuarios/:id', (req, res) => {
 
 
 router.post('/guardarprogreso', (req, res) => {
-  const { progreso } = req.body;
+  const { componente, progreso, email } = req.body;
 
-  const userEmail = req.userEmail;
+  console.log(componente)
+  let updateField = {};
 
-  userSchema.findOneAndUpdate({ email: userEmail }, { progreso }, { new: true })
+  if (componente === 'arquitectura') {
+    updateField = { progresoArquitectura: progreso };
+  } else if (componente === 'cultura') {
+    updateField = { progresoCultura: progreso };
+  } else {
+    return res.json({ message: 'Componente inválido' });
+  }
+
+  userSchema.findOneAndUpdate({ email: email }, updateField, { new: true })
     .then((user) => {
       if (user) {
         res.json({ message: 'Progreso guardado exitosamente' });
@@ -107,14 +116,22 @@ router.post('/guardarprogreso', (req, res) => {
 });
 
 router.post('/obtenerprogreso', (req, res) => {
-  const { email } = req.body;
-  const userEmail = req.userEmail;
+  const { componente, email } = req.body;
 
-  console.log('XD',email)
+  let progressField = '';
+
+  if (componente === 'arquitectura') {
+    progressField = 'progresoArquitectura';
+  } else if (componente === 'cultura') {
+    progressField = 'progresoCultura';
+  } else {
+    return res.json({ message: 'Componente inválido' });
+  }
+
   userSchema.findOne({ email })
     .then((user) => {
       if (user) {
-        res.json({ progreso: user.progreso });
+        res.json({ progreso: user[progressField] });
       } else {
         res.json({ message: 'Usuario no encontrado' });
       }

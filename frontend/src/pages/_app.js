@@ -7,6 +7,8 @@ import { CacheProvider } from '@emotion/react';
 import theme from '/src/theme';
 import createEmotionCache from '/src/createEmotionCache';
 import '../styles/style.css'
+import { Provider } from 'react-redux';
+import store from '/src/store';
 
 // import Registro from './Registro';
 
@@ -22,11 +24,13 @@ export default function MyApp(props) {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     </CacheProvider>
     
   );

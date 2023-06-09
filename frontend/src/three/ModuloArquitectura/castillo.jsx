@@ -51,7 +51,6 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
 
   const handleClick = () => {
     setModalOpen(true);
-    console.log('hola',leccionesCompletadas)
   };
 
   const handleClose = () => {

@@ -63,7 +63,8 @@ async function login_usuario(email, password) {
     }
 }
 
-async function obtenerProgreso(email) {
+async function obtenerProgreso(componente,email) {
+    console.log("componente",componente)
     console.log("aaa",email)
     try {
       const response = await fetch(`http://localhost:4000/api/obtenerprogreso`, {
@@ -72,6 +73,7 @@ async function obtenerProgreso(email) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          componente,
           email
         }),
       });
@@ -80,7 +82,7 @@ async function obtenerProgreso(email) {
   
       if (response.status === 200) {
         console.log('entré2')
-        console.log(data.message);
+        console.log(data.progreso);
         return data
       } else {
         console.error('Ha ocurrido un error.');
@@ -95,7 +97,9 @@ async function obtenerProgreso(email) {
     }
   }
   
-  async function guardarProgreso(progreso) {
+  async function guardarProgreso(componente,email,progreso) {
+    console.log("componente2",componente)
+    console.log("guardar",email)
     try {
       const response = await fetch(`http://localhost:4000/api/guardarprogreso`, {
         method: 'POST',
@@ -103,6 +107,8 @@ async function obtenerProgreso(email) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          componente,
+          email,
           progreso
         }),
       });
@@ -110,7 +116,9 @@ async function obtenerProgreso(email) {
       const data = await response.json(); // convierte la respuesta del servidor a JSON
   
       if (response.status === 200) {
+        console.log("xdde 202")
         console.log(data.message);
+        return data;
       } else {
         console.error('Ha ocurrido un error.');
       }

@@ -17,13 +17,13 @@ export default function Experience() {
         style={containerStyles}
         shadows
         camera={ {
-            fov: 45,
+            fov: 60,
             near: 0.1,
             far: 200,
-            position: [ 4, 3, 16 ]
+            position: [ -0.17, 7, 15 ]
         } }
         >
-            <Perf position="top-right" />
+            {/* <Perf position="top-right" /> */}
             <OrbitControls makeDefault />
             <spotLight position={[30, 20, 30]} intensity={0.2} />
             <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />

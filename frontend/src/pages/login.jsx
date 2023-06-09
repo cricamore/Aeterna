@@ -11,6 +11,8 @@ import { useFormik } from "formik";
 import { login_usuario } from "../functions/sqlFunctions"
 import { toast, ToastContainer } from 'react-toastify';
 import * as Yup from 'yup'
+import { useDispatch } from 'react-redux';
+import store from '../store';
 
 
 
@@ -18,6 +20,7 @@ export default function Login(){
     const router = useRouter();
     const [anchorEl, setAnchorEl] = useState(null);
     const [tipo, setTipo] = useState("");
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -32,6 +35,8 @@ export default function Login(){
             const res = await login_usuario(values.correo, values.password)
             if (res == 'Usuario encontrado') {
                 toast.success('Usuario encontrado')
+
+                dispatch({ type: 'SET_EMAIL', payload: values.correo });
                 
                 setTimeout(() => {
                   router.push('/main');
@@ -40,8 +45,6 @@ export default function Login(){
             else { toast.error('Usuario no encontrado'); }
         }
       });
-
-
 
 
     return(
@@ -62,7 +65,7 @@ export default function Login(){
                 <Typography sx={{color:'#D4AF37', fontFamily:'RioRhyme', fontWeight:'bold', mt:10, fontSize:40}}>
                     INICIAR SESIÓN
                 </Typography>
-                
+                {/* Formulario inicio sesion */}
                 <form onSubmit={formik.handleSubmit}>
                     <Box sx={{ alignItems:'center', justifyContent:'center', mt:4, display: 'flex', flexDirection: 'column'}}>
                         <TextField id="outlined-basic" 

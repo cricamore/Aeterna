@@ -1,7 +1,7 @@
 import { CameraControls, OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { DoubleSide, RepeatWrapping } from "three";
-import { useTexture } from "@react-three/drei";
+import { useTexture,Float,Html } from "@react-three/drei";
 // import Building from './building';
 import { Statue } from './statue';
 import { Coliseo } from './coliseo';
@@ -62,15 +62,57 @@ export default function Terrain(){
             <planeGeometry args={[1, 1]} />
             <meshStandardMaterial {...props} side={DoubleSide} />
           </mesh>
-          <mesh position={[2, 3.2, 2.5]} rotation-x={-Math.PI * 1}>
+          <mesh scale={1.8} position={[-7, 6, -5]} rotation-x={-Math.PI * 1} rotation-y={-Math.PI*0.25}>
             <Statue />
           </mesh>
           {/* <mesh position={[7, 0, 0]}scale={0.2}>
             <Building/>
           </mesh>   */}
           <mesh>
-            <Coliseo scale={0.1} position={[-4, 0, 2.5]} rotation-y={-Math.PI*0.5}/>
+            <Coliseo scale={[0.15, 0.25, 0.15]} position={[4, 0.2, 1]} rotation-y={-Math.PI*0.7}/>
           </mesh>
+          <Float speed={3}>
+            <Html
+              position={[5,5.5,0]}
+              center
+              style={{
+                fontFamily: 'Helvetica, Arial',
+                fontSize: '80px',
+                position: 'absolute',
+                background: '#00000088',
+                color: 'white', //D4AF37
+                padding: '15px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                borderRadius: '30px',
+                userSelect: 'none',
+                maxWidth: '8'
+              }}
+          >
+              ARQUITECTURA
+            </Html>
+          </Float>
+          <Float speed={0.5}>
+            <Html
+              position={[-7, 3, -5.5]}
+              center
+              style={{
+                fontFamily: 'Helvetica, Arial',
+                fontSize: '40px',
+                position: 'absolute',
+                background: '#00000088',
+                color: 'white',
+                padding: '15px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                borderRadius: '30px',
+                userSelect: 'none',
+                maxWidth: '8'
+              }}
+          >
+              CULTURA
+            </Html>
+          </Float>
         </group>
       </>
     );

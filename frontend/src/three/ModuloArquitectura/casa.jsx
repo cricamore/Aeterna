@@ -79,11 +79,6 @@ export function Casa({leccionesCompletadas, setLeccionesCompletadas},props) {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     };
     
-    const handleCamara = () => {
-      // Navega a la ruta específica cuando se hace clic en el componente
-      history.push('/casa');
-    };
-    
 
     const { nodes, materials } = useGLTF("/static/casa.glb");
     return (

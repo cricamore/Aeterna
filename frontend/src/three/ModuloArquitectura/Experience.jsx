@@ -4,15 +4,15 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useContext, useEffect, useRef, useState,createContext  } from 'react';
 import Plano from './plano';
 import { Castillo } from './castillo';
-// import { Coliseo } from './coliseo';
-// import { Casa } from './casa';
-// import Building from './building';
+import { Coliseo } from './coliseo';
+import { Casa } from './casa';
+import Building from './building';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
-// import { TableroLeccion1 } from './tableroLeccion1';
-// import { TableroLeccion2 } from './tableroLeccion2';
-// import { TableroLeccion3 } from './tableroLeccion3';
-// import { TableroLeccion4 } from './tableroLeccion4';
+import { TableroLeccion1 } from './tableroLeccion1';
+import { TableroLeccion2 } from './tableroLeccion2';
+import { TableroLeccion3 } from './tableroLeccion3';
+import { TableroLeccion4 } from './tableroLeccion4';
 
 
 export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas }) {
@@ -31,16 +31,16 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
           <Perf position="top-right" />
           {/* <directionalLight castShadow castposition={[1, 5, 9]} intensity={1} /> */}
           <ambientLight intensity={0.2} />
-          {/* <Sky/> */}
+          <Sky/>
           <spotLight position={[0, 30, 10]} />
           <CameraUpdater activeLessonIndex={activeLessonIndex} />
           <Plano />
-          {/* <mesh position={[-2, 0.7, 2]} scale={0.25}>
+          <mesh position={[-2, 0.7, 2]} scale={0.25}>
             <Casa />
           </mesh>
           <mesh position={[3, 0.5, 0]} scale={0.1} rotation-y={-Math.PI*1.5}>
             <Building />
-          </mesh> */}
+          </mesh>
           <mesh 
           scale={0.25} 
           position={[3, 0.74, 3]}
@@ -48,10 +48,10 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
           >
             <Castillo leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas} />
           </mesh>
-          {/* <mesh scale={0.03} position={[-1, 0.6, -2.8]} rotation-y={-Math.PI * 1.5}>
+          <mesh scale={0.03} position={[-1, 0.6, -2.8]} rotation-y={-Math.PI * 1.5}>
             <Coliseo />
-          </mesh> */}
-          {/* <mesh
+          </mesh>
+          <mesh
             scale={0.0006}
             position={[-4, 0.8, 3]}
             rotation-y={-Math.PI*1.1}
@@ -60,8 +60,8 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
           </mesh>
           <mesh
             scale={0.0006}
-            position={[4, 0.8, 3.8]}
-            rotation-y={-Math.PI * 2.1}
+            position={[4, 1, 3.8]}
+            rotation-y={-Math.PI * 2.3}
           >
             <TableroLeccion2/>
           </mesh>
@@ -78,7 +78,7 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
           rotation-y={-Math.PI * 1.8}
           >
             <TableroLeccion4/>
-          </mesh> */}
+          </mesh>
           <OrbitControls MakeDefault/>
         </Canvas>
     </>
@@ -87,13 +87,13 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
 
 function CameraUpdater({ activeLessonIndex }) {
   const { camera } = useThree();
-  const cameraPositionRef = useRef([0, 10, 10]);
+  const cameraPositionRef = useRef([0, 3.5, 7.5]);
 
   useEffect(() => {
     if (activeLessonIndex === 0) { //leccion1 casa
       cameraPositionRef.current = [-6, 2, 2];
     } else if (activeLessonIndex === 1) { //leccion2 castillo
-      cameraPositionRef.current = [5.5, 3, 4]; //[1, 4, 7]   [-1, 3, 4.5]
+      cameraPositionRef.current = [5, 2.5, 5.5]; //[1, 4, 7]   [-1, 3, 4.5]
     }
     else if (activeLessonIndex === 2) { //leccion 3 coliseo [3, 2, 1]
       cameraPositionRef.current = [-5, 2, -5];

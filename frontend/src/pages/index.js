@@ -32,9 +32,6 @@ import { styled } from '@mui/material/styles';
 import aeterna from "../images/aeterna.png";
 import Experience from "../three/Experience";
 
-
-
-
 const Principal = () => {
   const router = useRouter();
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -120,6 +117,7 @@ const Principal = () => {
 
   return (
     <div>
+      {/* Navbar */}
       <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
         <Toolbar>
            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -128,6 +126,7 @@ const Principal = () => {
              </Box>
            </div>
         </Toolbar>
+        {/* Crear cuenta */}
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <IconButton color="inherit" onClick={handleToggleRegister}>
@@ -136,6 +135,7 @@ const Principal = () => {
                 <Typography variant="subtitle1">CREAR CUENTA</Typography>
             </div>
         </Toolbar>
+        {/* Inicio sesion */}
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <IconButton color="inherit" onClick={handleToggleLogin}>
@@ -144,7 +144,7 @@ const Principal = () => {
                 <Typography variant="subtitle1">INICIAR SESION</Typography>
             </div>
         </Toolbar>
-
+        {/* Trujillo help*/}
         <Drawer anchor="left" open={isDrawerOpen} onClose={isRegisterOpen ? handleCloseRegister : handleCloseLogin}>
           <div style={{ backgroundColor: '#13192F', width: '500px', padding: '20px', height: '100%'}}>
             {isRegisterOpen && (

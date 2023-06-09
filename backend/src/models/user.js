@@ -19,7 +19,15 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    progreso: {
+    progresoArquitectura: {
+        type: [Boolean],
+        default: []
+    },
+    progresoCultura: {
+        type: [Boolean],
+        default: []
+    },
+    progresoArte: {
         type: [Boolean],
         default: []
     }
