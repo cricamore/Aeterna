@@ -4,18 +4,71 @@ import Close from "@mui/icons-material/Close";
 import Image from "next/image";
 import aeterna from "../images/aeterna.png";
 import Link from "next/link";
-import { createContext, useContext, useState, useRef } from "react";
+import { createContext, useContext, useState, useRef, useEffect } from "react";
+import { guardarProgreso, obtenerProgreso } from "../functions/sqlFunctions"
 import Experience from "../three/ModuloArquitectura/Experience";
 import Evaluacion from "../three/ModuloArquitectura/evaluacion";
+import { useRouter } from 'next/router'
 
 
 
 export default function Arquitectura() {
-  const leccionesCompletadas = [true, true, true, true, false, false];
+  const router = useRouter()
+  const email = router.query.email
+  console.log("soy email",email)
   const [activeLessonIndex, setActiveLessonIndex] = useState(-1);
+
+  const [leccionesCompletadas, setLeccionesCompletadas] = useState({
+    leccion1: false,
+    leccion2: false,
+    leccion3: false,
+    leccion4: false
+  });
+
 
   const handleCameraMove = (index) => {
     setActiveLessonIndex(index);
+    console.log("hola2",leccionesCompletadas)
+  };
+
+  const cargarProgreso = (email) => {
+    obtenerProgreso(email)
+      .then((data) => {
+        console.log("soy data",data)
+        setLeccionesCompletadas({
+          leccion1: data.progreso[0],
+          leccion2: data.progreso[1],
+          leccion3: data.progreso[2],
+          leccion4: data.progreso[3]
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+    
+  useEffect(() => {
+    cargarProgreso(email);
+  }, []);
+
+  const marcarLeccionCompletada = (leccionIndex) => {
+    const progreso = Object.keys(leccionesCompletadas).map((leccion, index) =>
+      index === leccionIndex ? true : leccionesCompletadas[leccion]
+    );
+  
+    setLeccionesCompletadas({
+      ...leccionesCompletadas,
+      [Object.keys(leccionesCompletadas)[leccionIndex]]: true
+    });
+  
+    guardarProgreso(progreso)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -45,11 +98,11 @@ export default function Arquitectura() {
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[0] ? 'green' : 'white',
                       marginRight: '8px',
+                      bgcolor: leccionesCompletadas.leccion1 ? 'green' : 'white'
                     }}
                   />
-                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%'}} onClick={()=>handleCameraMove(0)}>Lección 1</Typography>
+                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion1 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(0)}>Lección 1</Typography>
               </Box> 
               <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
@@ -57,11 +110,11 @@ export default function Arquitectura() {
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[1] ? 'green' : 'white',
                       marginRight: '8px',
+                      bgcolor: leccionesCompletadas.leccion2 ? 'green' : 'white'
                     }}
                   />
-                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%' }} onClick={()=>handleCameraMove(1)}>Lección 2</Typography>
+                  <Typography variant="subtitle2" color="inherit" sx={{fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion2 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(1)}>Lección 2</Typography>
               </Box>
               <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
@@ -69,11 +122,11 @@ export default function Arquitectura() {
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[2] ? 'green' : 'white',
                       marginRight: '8px',
+                      bgcolor: leccionesCompletadas.leccion3 ? 'green' : 'white'
                     }}
                   />
-                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%' }} onClick={()=>handleCameraMove(2)}>Lección 3</Typography>
+                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%',color: leccionesCompletadas.leccion3 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(2)}>Lección 3</Typography>
               </Box>
               <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
@@ -81,31 +134,18 @@ export default function Arquitectura() {
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[3] ? 'green' : 'white',
                       marginRight: '8px',
+                      bgcolor: leccionesCompletadas.leccion4 ? 'green' : 'white'
                     }}
                   />
-                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%' }} onClick={()=>handleCameraMove(3)}>Lección 4</Typography>
+                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion4 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(3)}>Lección 4</Typography>
               </Box>
-              {/* <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
-                  <Box
-                    sx={{
-                      width: '12px',
-                      height: '12px',
-                      borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[4] ? 'green' : 'white',
-                      marginRight: '8px',
-                    }}
-                  />
-                  <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%' }} onClick={()=>handleCameraMove(4)}>Lección 5</Typography>
-              </Box> */}
               <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray',borderRadius:'20px' }}>
                   <Box
                     sx={{
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
-                      backgroundColor: leccionesCompletadas[5] ? 'green' : 'white',
                       marginRight: '8px',
                     }}
                   />
@@ -122,7 +162,7 @@ export default function Arquitectura() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Experience activeLessonIndex={activeLessonIndex}/>
+      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
     </div>
    
   );

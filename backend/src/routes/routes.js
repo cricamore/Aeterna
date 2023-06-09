@@ -19,7 +19,8 @@ router.post('/loginusuario', (req, res) => {
     .then((user) => {
       if (user) {
         // El usuario existe en la base de datos
-        res.json({ message: 'Usuario encontrado' });
+        req.userEmail = email;
+        res.json({ message: 'Usuario encontrado', progreso: user.progreso });
       } else {
         // El usuario no existe en la base de datos
         res.json({ message: 'Usuario no encontrado' });
@@ -31,19 +32,22 @@ router.post('/loginusuario', (req, res) => {
     });
 });
 
+
 router.post('/registrarusuario', (req, res) => {
   const { nombre, apellido, email, password } = req.body;
 
   userSchema.create({ nombre, apellido, email, password })
     .then((user) => {
       // El usuario se ha registrado correctamente
-      res.json({ message: 'Usuario registrado exitosamente' });
+      req.userEmail = email;
+      res.json({ message: 'Usuario registrado exitosamente', progreso: user.progreso });
     })
     .catch((error) => {
       // Manejo de errores en caso de que ocurra algún problema con la base de datos
       res.json({ message: error });
     });
 });
+
 
 
 
@@ -67,9 +71,9 @@ router.get('/usuarios/:id', (req, res) => {
 //update an user
 router.put('/usuarios/:id', (req, res) => {
     const { id } = req.params;
-    const { nombre, apellido, email, cedula } = req.body;
+    const { nombre, apellido, email, password } = req.body;
     userSchema
-      .updateOne({_id: id}, {$set: {nombre, apellido, email, cedula}})
+      .updateOne({_id: id}, {$set: {nombre, apellido, email, password}})
       .then((data) => res.json(data))
       .catch((error) => res.json({message: error}));
 })
@@ -82,5 +86,42 @@ router.delete('/usuarios/:id', (req, res) => {
       .then((data) => res.json(data))
       .catch((error) => res.json({message: error}));
 })
+
+
+router.post('/guardarprogreso', (req, res) => {
+  const { progreso } = req.body;
+
+  const userEmail = req.userEmail;
+
+  userSchema.findOneAndUpdate({ email: userEmail }, { progreso }, { new: true })
+    .then((user) => {
+      if (user) {
+        res.json({ message: 'Progreso guardado exitosamente' });
+      } else {
+        res.json({ message: 'Usuario no encontrado' });
+      }
+    })
+    .catch((error) => {
+      res.json({ message: error });
+    });
+});
+
+router.post('/obtenerprogreso', (req, res) => {
+  const { email } = req.body;
+  const userEmail = req.userEmail;
+
+  console.log('XD',email)
+  userSchema.findOne({ email })
+    .then((user) => {
+      if (user) {
+        res.json({ progreso: user.progreso });
+      } else {
+        res.json({ message: 'Usuario no encontrado' });
+      }
+    })
+    .catch((error) => {
+      res.json({ message: error });
+    });
+});
 
 module.exports = router;

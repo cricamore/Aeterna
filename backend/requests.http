@@ -37,3 +37,6 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:4000/api/usuarios/64643414130998c703a4487d HTTP/1.1
+
+###
+POST http://localhost:4000/api/guardarprogreso HTTP/1.1

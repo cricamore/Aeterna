@@ -62,14 +62,14 @@ export default function Terrain(){
             <planeGeometry args={[1, 1]} />
             <meshStandardMaterial {...props} side={DoubleSide} />
           </mesh>
-          <mesh position={[2, 3.5, 2.5]} rotation-x={-Math.PI * 1}>
+          <mesh position={[2, 3.2, 2.5]} rotation-x={-Math.PI * 1}>
             <Statue />
           </mesh>
           {/* <mesh position={[7, 0, 0]}scale={0.2}>
             <Building/>
           </mesh>   */}
           <mesh>
-            <Coliseo scale={0.1} position={[-5, 0, 2.5]}/>
+            <Coliseo scale={0.1} position={[-4, 0, 2.5]} rotation-y={-Math.PI*0.5}/>
           </mesh>
         </group>
       </>

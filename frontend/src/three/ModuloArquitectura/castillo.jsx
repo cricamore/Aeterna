@@ -9,6 +9,7 @@ import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, posi
 import papel1 from '../../../public/static/textures/Torre/papel1.png';
 import papel2 from '../../../public/static/textures/Torre/papel2.png';
 import Image from 'next/image';
+// import { LeccionContext } from './leccionContext';
 
 const style = {
   position: 'absolute',
@@ -43,23 +44,34 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Castillo(props) {
+export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2];
 
   const handleClick = () => {
     setModalOpen(true);
-    console.log('hola')
+    console.log('hola',leccionesCompletadas)
   };
 
   const handleClose = () => {
     setModalOpen(false);
     setCurrentImageIndex(0)
+
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion2: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   }
 
   const handleNextImage = () => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      
   };
   
   const handlePreviousImage = () => {

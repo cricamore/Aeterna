@@ -10,7 +10,7 @@ import papel1 from '../../../public/static/textures/Templo/papel1.png';
 import papel2 from '../../../public/static/textures/Templo/papel2.png';
 import { Html } from '@react-three/drei';
 
-export default function Building(props) {
+export default function Building({leccionesCompletadas, setLeccionesCompletadas},props) {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -56,6 +56,16 @@ export default function Building(props) {
     const handleClose = () => {
       setModalOpen(false);
       setCurrentImageIndex(0)
+
+      const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+      if (todasLasImagenesVistas) {
+        // Marcar la lección como completada
+        setLeccionesCompletadas(prevState => ({
+          ...prevState,
+          leccion4: true,
+        }));
+        console.log("lec",leccionesCompletadas)
+      }
     }
 
     const handleNextImage = () => {
