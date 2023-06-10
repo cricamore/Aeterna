@@ -13,16 +13,16 @@ export function Arbol(props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.node_id42.geometry}
-          material={materials["68"]}
+          geometry={nodes.node_id58.geometry}
+          material={materials["75"]}
           position={[14.73, -256.02, 600.5]}
           scale={8.71}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.node_id44.geometry}
-          material={materials["69"]}
+          geometry={nodes.node_id60.geometry}
+          material={materials["76"]}
           position={[14.73, -256.02, 600.5]}
           scale={8.71}
         />

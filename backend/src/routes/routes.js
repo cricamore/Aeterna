@@ -141,4 +141,22 @@ router.post('/obtenerprogreso', (req, res) => {
     });
 });
 
+
+router.post('/obtenernombre', (req, res) => {
+  const { email } = req.body;
+
+  userSchema.findOne({ email })
+    .then((user) => {
+      if (user) {
+        const nombre = user.nombre;
+        res.json({ nombre });
+      } else {
+        res.json({ message: 'Usuario no encontrado' });
+      }
+    })
+    .catch((error) => {
+      res.json({ message: error });
+    });
+});
+
 module.exports = router;

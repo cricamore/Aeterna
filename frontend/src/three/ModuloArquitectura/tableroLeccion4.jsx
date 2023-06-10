@@ -11,8 +11,8 @@ export function TableroLeccion4(props) {
     <group {...props} dispose={null}>
       <group scale={3}>
         <mesh
-          castShadow
-          receiveShadow
+          //castShadow
+          //receiveShadow
           geometry={nodes.mesh_id6.geometry}
           material={materials["34"]}
           position={[-0.95, -256.34, 195.73]}
@@ -20,8 +20,8 @@ export function TableroLeccion4(props) {
           scale={391.22}
         />
         <mesh
-          castShadow
-          receiveShadow
+          //castShadow
+          //receiveShadow
           geometry={nodes.mesh_id5.geometry}
           material={materials["33"]}
           position={[-0.95, -256.34, 195.73]}
@@ -31,8 +31,8 @@ export function TableroLeccion4(props) {
       </group>
       <group position={[0.04, 0.13, 0.27]} rotation={[0, 1.57, 0]} scale={4}>
         <mesh
-          castShadow
-          receiveShadow
+          //castShadow
+          //receiveShadow
           geometry={nodes.mesh_id98.geometry}
           material={materials["95"]}
           position={[-350, 70, 35]}

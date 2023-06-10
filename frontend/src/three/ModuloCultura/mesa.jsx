@@ -46,7 +46,7 @@ const buttonCerrar = {
 };
 
 
-export function Mesa(props) {
+export function Mesa({leccionesCompletadas, setLeccionesCompletadas},props) {
   const { nodes, materials } = useGLTF("/static/mesa.glb");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -61,15 +61,15 @@ export function Mesa(props) {
     setModalOpen(false);
     setCurrentImageIndex(0)
 
-    // const todasLasImagenesVistas = currentImageIndex === images.length - 1;
-    // if (todasLasImagenesVistas) {
-    //   // Marcar la lección como completada
-    //   setLeccionesCompletadas(prevState => ({
-    //     ...prevState,
-    //     leccion3: true,
-    //   }));
-    //   console.log("lec",leccionesCompletadas)
-    // }
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion3: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   };
 
   const handleNextImage = () => {

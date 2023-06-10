@@ -13,6 +13,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux';
 import store from '../store';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
 
 
 
@@ -34,7 +36,20 @@ export default function Login(){
         onSubmit: async (values) => {
             const res = await login_usuario(values.correo, values.password)
             if (res == 'Usuario encontrado') {
-                toast.success('Usuario encontrado')
+                toast.success('Usuario encontrado', {
+                  position: toast.POSITION.TOP_RIGHT,
+                  closeOnClick: true,
+                  closeButton: false,
+                  draggable: true,
+                  progress: undefined,
+                  icon: (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <CheckCircleIcon sx={{ fontSize: '250px' }} />
+                    </div>
+                  ),
+                });
+
+                localStorage.setItem('email',values.correo);
 
                 dispatch({ type: 'SET_EMAIL', payload: values.correo });
                 
@@ -42,7 +57,20 @@ export default function Login(){
                   router.push('/main');
                 }, 2000);
             }
-            else { toast.error('Usuario no encontrado'); }
+            else {                 
+              toast.error('Usuario no encontrado', {
+                position: toast.POSITION.TOP_RIGHT,
+                closeOnClick: true,
+                closeButton: false,
+                draggable: true,
+                progress: undefined,
+                icon: (
+                  <div style={{display: 'flex',alignItems: 'center', justifyContent: 'center' }}>
+                    <ErrorIcon sx={{fontSize: '250px' }} />
+                  </div>
+                ),
+              });
+           }
         }
       });
 

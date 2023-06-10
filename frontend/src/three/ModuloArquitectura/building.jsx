@@ -78,28 +78,28 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
 
   const { nodes, materials } = useGLTF("/static/Imperial_Temple.glb");
   return (
-    <group {...props} dispose={null} onClick={handleClick}>
-      <group position={[0, 8.09, 0]} rotation={[0, -0.07, 0]}>
+    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
+      <group position={[0, 8.09, 0]} rotation={[0, -0.07, 0]} onClick={handleClick}>
         <mesh
-          castShadow
+          //castShadow
           receiveShadow
           geometry={nodes.Plane012.geometry}
           material={materials.Stone_Walls}
         />
         <mesh
-          castShadow
+          //castShadow
           receiveShadow
           geometry={nodes.Plane012_1.geometry}
           material={materials.Plinths}
         />
         <mesh
-          castShadow
+          //castShadow
           receiveShadow
           geometry={nodes.Plane012_2.geometry}
           material={materials.Doorway}
         />
         <mesh
-          castShadow
+          //castShadow
           receiveShadow
           geometry={nodes.Plane012_3.geometry}
           material={materials.Doorway_Surround}

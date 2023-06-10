@@ -5,12 +5,17 @@ import aeterna from "../images/aeterna.png";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from "next/navigation";
 import Experience from "../three/Experience";
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 const ToolbarWithLogout = () => {
   const router = useRouter();
   const handleLogout = () => {
      router.push('/');
   };
+
+  const handleLeccion = () => {
+    router.push('/planLecciones');
+ };
 
   return (
     <div>
@@ -24,13 +29,22 @@ const ToolbarWithLogout = () => {
                 </Box>
             </div>
             </Toolbar>
+            {/*Plan de lecciones*/}
+            <Toolbar>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <IconButton color="inherit" onClick={handleLeccion}>
+                        <ListAltIcon style={{ fontSize: '100px' }} />
+                    </IconButton>
+                    <Typography variant="subtitle2">PLAN LECCIONES</Typography>
+                </div>
+            </Toolbar>
             {/* Cerrar sesion */}
-            <Toolbar sx={{mt:15}}>
+            <Toolbar>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <IconButton color="inherit" onClick={handleLogout}>
                         <LogoutIcon style={{ fontSize: '100px' }} />
                     </IconButton>
-                    <Typography variant="subtitle1">CERRAR SESIÓN</Typography>
+                    <Typography variant="subtitle2">CERRAR SESIÓN</Typography>
                 </div>
             </Toolbar>
         </AppBar>

@@ -5,16 +5,38 @@ import Image from "next/image";
 import aeterna from "../images/aeterna.png";
 import Link from "next/link";
 import { createContext, useContext, useState, useRef, useEffect } from "react";
-import { guardarProgreso, obtenerProgreso } from "../functions/sqlFunctions"
+import { guardarProgreso, obtenerProgreso,obtenerNombre } from "../functions/sqlFunctions"
 import Experience from "../three/ModuloCultura/Experience";
-import Evaluacion from "../three/ModuloArquitectura/evaluacion";
-import { useSelector } from 'react-redux';
+import Evaluacion from "../three/ModuloCultura/evaluacion";
+import { useSelector,useDispatch } from 'react-redux';
 
 
 
 export default function Cultura() {
+  const dispatch = useDispatch();
   const email = useSelector(state => state.email);
+  const [nombreBaseDatos, setNombreBaseDatos] = useState('');
+
   console.log("soy email",email)
+  console.log("soy email",nombreBaseDatos)
+
+    
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('email');
+    console.log("soy email3",storedEmail)
+    if (storedEmail) {
+      dispatch({ type: 'SET_EMAIL', payload: storedEmail });
+
+      obtenerNombre(storedEmail)
+      .then((nombre) => {
+        setNombreBaseDatos(nombre);
+      })
+      .catch((error) => {
+        console.error('Error al obtener el nombre de la base de datos:', error);
+      });
+    }
+  }, []);
+  
   const [activeLessonIndex, setActiveLessonIndex] = useState(-1);
 
   const handleCameraMove = (index) => {
@@ -46,10 +68,14 @@ export default function Cultura() {
       });
   };
 
+
+
     
   useEffect(() => {
-    cargarProgreso(email);
-  }, []);
+    if (email) {
+      cargarProgreso(email);
+    }
+  }, [email]);
 
   useEffect(() => {
     const algunaLeccionCompletada = Object.values(leccionesCompletadas).some(
@@ -80,11 +106,11 @@ export default function Cultura() {
               <IconButton color="inherit" >
                 <AccountCircle style={{ fontSize: '50px', color:'white' }} />
               </IconButton>
-              <Typography variant="subtitle1" sx={{ fontSize: '14px', letterSpacing: '-0.5px', color:'#FFBD12' }}> Nombre de usuario </Typography>
+              <Typography variant="subtitle1" sx={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',width:'100%',justifyContent: 'center',textAlign: 'left', fontSize: '18px', color:'#FFBD12' }}>{nombreBaseDatos}</Typography>
             </Box>
             {/* Go Home */}
             <Box mt={1}>
-                <Link href='/' passHref>
+                <Link href='/main' passHref>
                   <Image src={aeterna} width="120" height="80" alt="icon" />
                 </Link>
             </Box>
@@ -95,59 +121,59 @@ export default function Cultura() {
             {/* Lecciones*/}
             <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
               {/* Leccion 1 */}
-              <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px', height:'30px', display: 'flex', alignItems: 'center',borderRadius:'20px', backgroundColor: 'transparent', border: '1px solid gray'}}>
+              <Box component={Paper} elevation={3} mb={1} p={1} sx={{cursor:'pointer',width:'150px', height:'30px', display: 'flex', alignItems: 'center',borderRadius:'20px', backgroundColor: 'transparent', border: '1px solid gray'}}>
                   <Box
                     sx={{
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
                       marginRight: '8px',
-                      bgcolor: leccionesCompletadas.leccion1 ? 'green' : 'white'
+                      bgcolor: leccionesCompletadas.leccion1 ? 'green' : 'white',
                     }}
                   />
                   <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion1 ? 'green' : '#FFBD12'}} onClick={()=>handleCameraMove(0)}>Lección 1</Typography>
               </Box>
                {/* Leccion 2 */}
-              <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
+              <Box component={Paper} elevation={3} mb={1} p={1} sx={{cursor:'pointer',width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
                     sx={{
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
                       marginRight: '8px',
-                      bgcolor: leccionesCompletadas.leccion2 ? 'green' : 'white'
+                      bgcolor: leccionesCompletadas.leccion2 ? 'green' : 'white',                     
                     }}
                   />
                   <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion2 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(1)}>Lección 2</Typography>
               </Box>
               {/* Leccion 3 */}
-              <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
+              <Box component={Paper} elevation={3} mb={1} p={1} sx={{cursor:'pointer',width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
                     sx={{
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
                       marginRight: '8px',
-                      bgcolor: leccionesCompletadas.leccion3 ? 'green' : 'white'
+                      bgcolor: leccionesCompletadas.leccion3 ? 'green' : 'white',
                     }}
                   />
                   <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion3 ? 'green' : '#FFBD12' }} onClick={()=>handleCameraMove(2)}>Lección 3</Typography>
               </Box>
               {/* Leccion 4 */}
-              <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
+              <Box component={Paper} elevation={3} mb={1} p={1} sx={{cursor:'pointer',width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray', borderRadius:'20px' }}>
                   <Box
                     sx={{
                       width: '12px',
                       height: '12px',
                       borderRadius: '50%',
                       marginRight: '8px',
-                      bgcolor: leccionesCompletadas.leccion4 ? 'green' : 'white'
+                      bgcolor: leccionesCompletadas.leccion4 ? 'green' : 'white',
                     }}
                   />
                   <Typography variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', alignItems:'center', justifyContent:'center', width:'75%', color: leccionesCompletadas.leccion4 ? 'green' : '#FFBD12'}} onClick={()=>handleCameraMove(3)}>Lección 4</Typography>
               </Box>
               {/* Evaluacion */}
-              <Box component={Paper} elevation={3} mb={1} p={1} sx={{width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray',borderRadius:'20px' }}>
+              <Box component={Paper} elevation={3} mb={1} p={1} sx={{cursor:'pointer',width:'150px',height:'30px', display: 'flex', alignItems: 'center', backgroundColor: 'transparent', border: '1px solid gray',borderRadius:'20px' }}>
                   <Box
                     sx={{
                       width: '12px',
@@ -161,16 +187,16 @@ export default function Cultura() {
             </Box>
             {/* Cerrar sesion */}
             <Link href='/' passHref>
-                  <Box mt={3} sx={{display: 'flex', zIndex: 9999, position: 'fixed',bottom: '0', left:'0', right:'0',justifyContent: 'left'}}>
-                    <Box component={Paper} elevation={3} p={1} sx={{width: '200px',height:'120px',textAlign: 'center', backgroundColor: '#3f51b5', borderRadius: '100% 100% 0 0'}}>
-                      <Typography variant="subtitle2" color="inherit" sx={{height:'100%', fontSize: '20px',color:'#FFBD12' , fontWeight:'bold',display:'flex',alignItems:'center', justifyContent: 'center' }}>CERRAR SESIÓN</Typography>
-                    </Box>
+              <Box mt={3} sx={{Zindex: 9999,display:'flex',maxWidth:'200px', position: 'fixed',bottom: '0', left:'0', right:'0',justifyContent: 'left'}}>
+                  <Box component={Paper} elevation={3} p={1} sx={{width: '200px',height:'120px',textAlign: 'center', backgroundColor: '#3f51b5', borderRadius: '100% 100% 0 0'}}>
+                    <Typography variant="subtitle2" color="inherit" sx={{height:'100%', fontSize: '20px',color:'#FFBD12' , fontWeight:'bold',display:'flex',alignItems:'center', justifyContent: 'center' }}>CERRAR SESIÓN</Typography>
                   </Box>
+              </Box>
             </Link>
           </Box>
         </Toolbar>
       </AppBar>
-      <Experience activeLessonIndex={activeLessonIndex}/>
+      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
     </div>
    
   );

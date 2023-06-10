@@ -21,8 +21,6 @@ import { TableroLeccion4 } from '../ModuloArquitectura/tableroLeccion4';
 import { Coins } from './coins';
 import { Mesita } from './mesita';
 
-
-
 export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas }){
 
     const containerStyles = {
@@ -37,43 +35,53 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
             <Canvas style={containerStyles} shadows>
                 <ambientLight intensity={0.3} />
                 <Sky/>
-                <Perf position="top-right" />
+                {/* <Perf position="top-right" /> */}
                 <spotLight position={[30, 20, 30]} intensity={0.2} />
                 <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />
                 <CameraUpdater activeLessonIndex={activeLessonIndex} />
                 <Plano />
-                {/* <mesh position={[0, 1.3, -4]} scale={0.05}>
-                    <Zeus/>
-                </mesh> */}
-                {/* <mesh position={[-2,0.5,0]} scale={0.01}>
-                    <Cerbero/>
-                </mesh> */}
-                <mesh scale={0.25} position={[-1.1, 1.6, 3]} rotation-y={-Math.PI*1}>
-                    <Gargoyle/>
+                <mesh scale={0.25} position={[0, 1.6, 3]} rotation-y={-Math.PI*1}>
+                    <Gargoyle leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
                 </mesh>
-                <mesh position={[-7, 1.45, 3.1]} scale={3} rotation-y={Math.PI*0.2} > 
-                    <Hercules/>
+                <mesh position={[-6.8, 1.5, 4]} scale={3} rotation-y={Math.PI*0.3} > 
+                    <Hercules leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+                </mesh>
+                <mesh position={[-3, 0.5, 3.1]} scale={0.015} rotation-y={Math.PI*0.2}>
+                  <Cerbero leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
                 </mesh>
                 <mesh position={[1.5,0,-0.5]}>
-                    <Mesita position={[2, 1, 2]}/>
-                    <Coins position={[2.1,1.5,2.4]}/>
+                  <mesh position={[2, 1, 2]}>
+                    <Mesita  leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+                  </mesh>
+                  <mesh position={[2.1,1.5,2.4]} >
+                    <Coins leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+                  </mesh>
+                    
                 </mesh>
-                {/* <mesh position={[3.1,1.4,1.1]} scale={2.2}>
-                    <Monedas/>
-                </mesh> */}
                 <mesh position={[1, 0.1, -1]} rotation-y={Math.PI*0.2} scale={0.7}>
-                    <Mesa scale={0.08} position={[3, 0.5, 0]}/>
-                    <Libro scale={3} position={[1.5,1.32,0]} rotation-y={-Math.PI*0.5}/>
+                  <mesh scale={0.08} position={[3, 0.5, 0]}>
+                    <Mesa  leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+                  </mesh>
+                  <mesh scale={3} position={[1.5,1.32,0]} rotation-y={-Math.PI*0.5}>
+                    <Libro leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+                  </mesh>
+                    
                 </mesh>
                 <mesh position={[-4, 1.2, -1]} rotation-y={-Math.PI*1.2}>
-                    <Leyes/>
+                    <Leyes leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
                 </mesh>
                 <mesh >
                     <Arbol position={[4,2.6, -1]}/>
+                    <Arbol position={[1.9,2.6, -1]}/>
                     <Arbol position={[4,2.4,-9.5]}/>
-                    <Arbol position={[1,2.6,-8.5]}/>
+                    <Arbol position={[4,2.4,-4.5]}/>
+                    <Arbol position={[4.6,2.4,-6.5]}/>
+                    <Arbol position={[1,2.6,-8.5]}/> 
                     <Arbol position={[-3,2.6,-9]}/>
+                    <Arbol position={[-3.2,2.65,-6]}/>
+                    <Arbol position={[-5,2.4,-1]}/>
                     <Arbol position={[-4.5,2.5,-5]}/>
+
                 </mesh>
                 <mesh>
                     <Bonsai position={[7,4.8,3]} rotation-y={-Math.PI*0.5}/>
@@ -103,7 +111,7 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
                     position={[2, 0.9, 2.2]}
                     rotation-y={-Math.PI*1.2}
                 >   
-                    <TableroLeccion4/>g
+                    <TableroLeccion4/>
                 </mesh>
                 
                 {/* <OrbitControls enableRotate={false} MakeDefault /> */}
@@ -128,7 +136,7 @@ function CameraUpdater({ activeLessonIndex }) {
     const getTargetPosition = (activeLessonIndex) => {
         switch (activeLessonIndex) {
           case 0: // leccion1 casa
-            return [-0.8, 1.2, -1.1];
+            return [-0.8, 1, -1.1];
           case 1: // leccion2 castillo
             return [1.8, 2.1, -2];
           case 2: // leccion3 coliseo
@@ -143,7 +151,7 @@ function CameraUpdater({ activeLessonIndex }) {
       const getTargetRotation = (activeLessonIndex) => {
         switch (activeLessonIndex) {
           case 0: // leccion1 mitologia
-            return [-0.2, Math.PI*0.9, 0];
+            return [-0.2, Math.PI*0.935, 0];
           case 1: // leccion2 derecho
             return [Math.PI/3, Math.PI*1.1 / 2, -Math.PI/3];
           case 2: // leccion3 libro

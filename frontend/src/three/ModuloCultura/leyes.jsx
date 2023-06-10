@@ -44,7 +44,7 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Leyes(props) {
+export function Leyes({leccionesCompletadas, setLeccionesCompletadas},props) {
   const { nodes, materials } = useGLTF("/static/leyes.glb");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -59,15 +59,15 @@ export function Leyes(props) {
     setModalOpen(false);
     setCurrentImageIndex(0)
 
-    // const todasLasImagenesVistas = currentImageIndex === images.length - 1;
-    // if (todasLasImagenesVistas) {
-    //   // Marcar la lección como completada
-    //   setLeccionesCompletadas(prevState => ({
-    //     ...prevState,
-    //     leccion3: true,
-    //   }));
-    //   console.log("lec",leccionesCompletadas)
-    // }
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion2: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   };
 
   const handleNextImage = () => {

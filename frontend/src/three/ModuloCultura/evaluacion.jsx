@@ -24,6 +24,7 @@ const optionStyle = {
   border: '3px solid white',
   borderRadius: 20,
   fontSize: 20,
+  cursor: 'pointer'
 };
 
 const questionTextStyle = {
@@ -52,77 +53,78 @@ export default function Evaluacion() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
 
+  //Preguntas de la evaluacion
   const questions = [
     {
-      text: "¿Cuál era la función principal de las torres medievales en la ciudad de Roma?",
+      text: "¿Cuál fue el periodo de tiempo en el que se considera que el latín tuvo sus primeras apariciones?",
       options: [
-        { id: 0, text: "Defender los feudos", isCorrect: true },
-        { id: 1, text: "Albergar a la nobleza romana", isCorrect: false },
-        { id: 2, text: "Señalizar peligros", isCorrect: false },
-        { id: 3, text: "Celebrar ceremonias religiosas", isCorrect: false },
+        { id: 0, text: "Siglo VI a. C.", isCorrect: false },
+        { id: 1, text: "Siglo IV a. C.", isCorrect: true },
+        { id: 2, text: "Siglo II a. C.", isCorrect: false },
+        { id: 3, text: "Siglo I a. C.", isCorrect: false },
       ],
     },
     {
-      text: "¿Cuáles fueron los materiales utilizados en la construcción del Coliseo Romano?",
+      text: "¿Qué factor contribuyó a la expansión del latín romano y a la existencia de pocas diferencias dialectales?",
       options: [
-        { id: 0, text: "Bloques de travertino, hormigón y madera", isCorrect: true },
-        { id: 1, text: "Ladrillo, piedra y estuco", isCorrect: false },
-        { id: 2, text: "Mármol y hormigón", isCorrect: false },
-        { id: 3, text: "Madera, ladrillo y estuco", isCorrect: false },
+        { id: 0, text: "La dominación etrusca.", isCorrect: false },
+        { id: 1, text: "La invasión de los galos.", isCorrect: false },
+        { id: 2, text: "La influencia de los griegos.", isCorrect: true },
+        { id: 3, text: "La extensión del imperio romano.", isCorrect: false },
       ],
     },
     {
-      text: "¿Qué tipo de eventos tenían lugar en el Coliseo Romano?",
+      text: "¿Cuál de los siguientes dioses romanos era considerado el padre de los dioses y gobernante del cielo?",
       options: [
-        { id: 0, text: "Ceremonias religiosas públicas", isCorrect: false },
-        { id: 1, text: "Luchas de gladiadores y espectáculos públicos", isCorrect: true },
-        { id: 2, text: "Procesiones y sacrificios de animales", isCorrect: false },
-        { id: 3, text: "Exhibiciones de arte y música", isCorrect: false },
+        { id: 0, text: "Júpiter", isCorrect: true },
+        { id: 1, text: "Marte", isCorrect: false },
+        { id: 2, text: "Venus", isCorrect: false },
+        { id: 3, text: "Juno", isCorrect: false },
       ],
     },
     {
-      text: "¿Cuál era la función principal de la sala principal (cella) en un templo romano?",
+      text: "¿Cuál fue la influencia principal en la mitología romana y la adopción de dioses y mitos de otra cultura?",
       options: [
-        { id: 0, text: "Albergar la imagen de culto de una deidad", isCorrect: true },
-        { id: 1, text: "Celebrar ceremonias religiosas al aire libre", isCorrect: false },
-        { id: 2, text: "Almacenar equipos y ofrendas para el templo", isCorrect: false },
-        { id: 3, text: "Realizar sacrificios de animales en el altar", isCorrect: false },
+        { id: 0, text: "La mitología egipcia.", isCorrect: false },
+        { id: 1, text: "La mitología celta.", isCorrect: false },
+        { id: 2, text: "La mitología griega.", isCorrect: true },
+        { id: 3, text: "La mitología nórdica.", isCorrect: false },
       ],
     },
     {
-      text: "¿Dónde tenían lugar las ceremonias religiosas públicas en la antigua Roma?",
+      text: "¿Cuál de las siguientes instituciones representaba los intereses de la plebe y promovía reformas sociales en la antigua Roma?",
       options: [
-        { id: 0, text: "En el edificio del templo", isCorrect: false },
-        { id: 1, text: "Dentro de la cella del templo", isCorrect: false },
-        { id: 2, text: "Al aire libre, no dentro del templo", isCorrect: true },
-        { id: 3, text: "En un santuario aparte del templo", isCorrect: false },
+        { id: 0, text: "Senado", isCorrect: false },
+        { id: 1, text: "Cónsules", isCorrect: false },
+        { id: 2, text: "Tribunos de la plebe", isCorrect: true },
+        { id: 3, text: "Emperador", isCorrect: false },
       ],
     },
     {
-      text: "¿Cómo evolucionaron las viviendas romanas a lo largo del tiempo?",
+      text: "¿Qué tipo de gobierno se estableció en Roma después de la transformación hacia un sistema imperial?",
       options: [
-        { id: 0, text: "De una cabaña redonda a una domus romana", isCorrect: true },
-        { id: 1, text: "De una casa de madera a una casa de piedra", isCorrect: false },
-        { id: 2, text: "De una casa unifamiliar a un complejo de apartamentos", isCorrect: false },
-        { id: 3, text: "De una casa simple a una casa con chimenea", isCorrect: false },
+        { id: 0, text: "Monarquía", isCorrect: false },
+        { id: 1, text: "República", isCorrect: true },
+        { id: 2, text: "Autocracia", isCorrect: false },
+        { id: 3, text: "Teocracia", isCorrect: false },
       ],
     },
     {
-      text: "¿Qué factor reflejaba la clase social del propietario en las viviendas romanas?",
+      text: "¿Cuál fue el primer código de leyes romano que se considera como el inicio del derecho romano?",
       options: [
-        { id: 0, text: "El tamaño de la vivienda", isCorrect: false },
-        { id: 1, text: "La ubicación de la vivienda", isCorrect: false },
-        { id: 2, text: "Los materiales utilizados en la vivienda", isCorrect: true },
-        { id: 3, text: "El número de habitaciones en la vivienda", isCorrect: false },
+        { id: 0, text: "Ley de las Doce Tablas", isCorrect: true },
+        { id: 1, text: "Código de Justiniano", isCorrect: false },
+        { id: 2, text: "Edicto del pretor", isCorrect: false },
+        { id: 3, text: "Ley de los plebeyos", isCorrect: false },
       ],
     },
     {
-      text: "¿Cómo se calentaban las viviendas romanas sin chimenea?",
+      text: "¿Cuál de las siguientes opciones describe mejor la distinción entre el Derecho público y el Derecho privado en el derecho romano?",
       options: [
-        { id: 0, text: "Con hornos fijos de leña construidos bajo la casa", isCorrect: true },
-        { id: 1, text: "Utilizando sistemas de calefacción central", isCorrect: false },
-        { id: 2, text: "Quemando carbón en el interior de la casa", isCorrect: false },
-        { id: 3, text: "Recurriendo a estufas de gas portátiles", isCorrect: false },
+        { id: 0, text: "El Derecho público regula los acuerdos y transacciones entre ciudadanos, mientras que el Derecho privado regula las acciones del Estado.", isCorrect: false },
+        { id: 1, text: "El Derecho público regula las acciones del Estado, mientras que el Derecho privado regula los acuerdos y transacciones entre ciudadanos.", isCorrect: true },
+        { id: 2, text: "El Derecho público regula las relaciones entre el Estado y la Iglesia, mientras que el Derecho privado regula las relaciones entre ciudadanos.", isCorrect: false },
+        { id: 3, text: "El Derecho público regula las relaciones entre los ciudadanos, mientras que el Derecho privado regula las acciones del Estado.", isCorrect: false },
       ],
     },
   ];
@@ -148,6 +150,7 @@ export default function Evaluacion() {
 
   return(
     <div>
+      {/* Modal */}
       <Typography onClick={handleOpen} variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', width:'75%' }}>Evaluación</Typography>
       <Modal
         open={open}

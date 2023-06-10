@@ -84,8 +84,8 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
   
   const { nodes, materials } = useGLTF("/static/castillo.glb");
   return (
-    <group {...props} dispose={null} onClick={handleClick}>
-      <group>
+    <group {...props} dispose={null}  onClick={(e) => {e.stopPropagation()}}>
+      <group onClick={handleClick}>
         <mesh
           castShadow
           receiveShadow
@@ -194,46 +194,7 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
           position={[-2.86, 3.7, -1.94]}
           scale={[0.12, 1, 0.12]}
         />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["Grass_Basic_A_spring-summer"].geometry}
-          material={materials.Grass_bqm}
-          position={[0, -10, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["Misc_Dead-leaves_A_spring-summer"].geometry}
-          material={materials.Misc_bqm}
-          position={[0, -10, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["Grass_Basic_D_spring-summer"].geometry}
-          material={materials["Grass_bqm.001"]}
-          position={[0, -10, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["Grass_Basic-dry_A_spring-summer"].geometry}
-          material={materials["Grass_bqm.002"]}
-          position={[0, -10, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes["Grass_Basic-dry_D_spring-summer"].geometry}
-          material={materials["Grass_bqm.003"]}
-          position={[0, -10, 0]}
-          rotation={[0, 0, -Math.PI / 2]}
-        />
+
         {/* <mesh
           castShadow
           receiveShadow

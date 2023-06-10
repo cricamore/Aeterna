@@ -44,7 +44,7 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Libro(props) {
+export function Libro({leccionesCompletadas, setLeccionesCompletadas},props) {
   const { nodes, materials } = useGLTF("/static/libro.glb");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -59,15 +59,15 @@ export function Libro(props) {
     setModalOpen(false);
     setCurrentImageIndex(0)
 
-    // const todasLasImagenesVistas = currentImageIndex === images.length - 1;
-    // if (todasLasImagenesVistas) {
-    //   // Marcar la lección como completada
-    //   setLeccionesCompletadas(prevState => ({
-    //     ...prevState,
-    //     leccion3: true,
-    //   }));
-    //   console.log("lec",leccionesCompletadas)
-    // }
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion3: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   };
 
   const handleNextImage = () => {
@@ -78,8 +78,8 @@ export function Libro(props) {
       setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
   return (
-    <group {...props} dispose={null} onClick={handleClick}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01} onClick={handleClick}>
         <mesh
           castShadow
           receiveShadow

@@ -44,9 +44,10 @@ const buttonCerrar = {
   transform: 'translate(-50%, -50%)',
 };
 
-export function Coins(props) {
+export function Coins({leccionesCompletadas, setLeccionesCompletadas},props) {
   const { nodes, materials } = useGLTF("/static/coins.glb");
   const [modalOpen, setModalOpen] = useState(false);
+  const coinsRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2, papel3];
 
@@ -59,15 +60,15 @@ export function Coins(props) {
     setModalOpen(false);
     setCurrentImageIndex(0)
 
-    // const todasLasImagenesVistas = currentImageIndex === images.length - 1;
-    // if (todasLasImagenesVistas) {
-    //   // Marcar la lección como completada
-    //   setLeccionesCompletadas(prevState => ({
-    //     ...prevState,
-    //     leccion3: true,
-    //   }));
-    //   console.log("lec",leccionesCompletadas)
-    // }
+    const todasLasImagenesVistas = currentImageIndex === images.length - 1;
+    if (todasLasImagenesVistas) {
+      // Marcar la lección como completada
+      setLeccionesCompletadas(prevState => ({
+        ...prevState,
+        leccion4: true,
+      }));
+      console.log("lec",leccionesCompletadas)
+    }
   };
 
   const handleNextImage = () => {
@@ -79,10 +80,11 @@ export function Coins(props) {
   };
 
   return (
-    <group {...props} dispose={null} onClick={handleClick}>
+    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
       <mesh
         castShadow
-        receiveShadow
+        receiveShadow 
+        onClick={handleClick}
         geometry={nodes.node_id70.geometry}
         material={materials["93"]}
         position={[-0.15, -0.06, 0.3]}

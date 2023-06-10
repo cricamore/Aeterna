@@ -144,7 +144,7 @@ const Principal = () => {
                 <Typography variant="subtitle1">INICIAR SESION</Typography>
             </div>
         </Toolbar>
-        {/* Trujillo help*/}
+        {/*Barra desplazadora*/}
         <Drawer anchor="left" open={isDrawerOpen} onClose={isRegisterOpen ? handleCloseRegister : handleCloseLogin}>
           <div style={{ backgroundColor: '#13192F', width: '500px', padding: '20px', height: '100%'}}>
             {isRegisterOpen && (

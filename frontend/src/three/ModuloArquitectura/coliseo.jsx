@@ -81,9 +81,10 @@ export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
   };
 
   return (
-    <group {...props} dispose={null} onClick={handleClick}>
+    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
       <mesh
         castShadow
+        onClick={handleClick}
         receiveShadow
         geometry={nodes["10064_colosseum_v1_Iteration0"].geometry}
         material={materials["10064_colosseum"]}

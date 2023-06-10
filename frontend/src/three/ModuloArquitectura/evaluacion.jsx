@@ -24,6 +24,7 @@ const optionStyle = {
   border: '3px solid white',
   borderRadius: 20,
   fontSize: 20,
+  cursor: 'pointer'
 };
 
 const questionTextStyle = {
@@ -52,6 +53,7 @@ export default function Evaluacion() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
 
+  //Preguntas de la evaluacion
   const questions = [
     {
       text: "¿Cuál era la función principal de las torres medievales en la ciudad de Roma?",
@@ -148,6 +150,7 @@ export default function Evaluacion() {
 
   return(
     <div>
+      {/* Modal */}
       <Typography onClick={handleOpen} variant="subtitle2" color="inherit" sx={{ color: '#FFBD12', fontSize:'18px', display:'flex', width:'75%' }}>Evaluación</Typography>
       <Modal
         open={open}

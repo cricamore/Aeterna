@@ -10,9 +10,6 @@ import papel2 from '../../../public/static/textures/papel2.png';
 import papel3 from '../../../public/static/textures/papel3.png';
 import { Html } from '@react-three/drei';
 
-
-
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -82,11 +79,12 @@ export function Casa({leccionesCompletadas, setLeccionesCompletadas},props) {
 
     const { nodes, materials } = useGLTF("/static/casa.glb");
     return (
-        <group {...props} dispose={null} onClick={handleClick}>
+        <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
           <group
               position={[494.76, -0.07, -137.3]}
               rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-              scale={0.01}            
+              scale={0.01}    
+              onClick={handleClick}         
           >
             <mesh
             castShadow
@@ -99,8 +97,8 @@ export function Casa({leccionesCompletadas, setLeccionesCompletadas},props) {
             rotation={[0, 0, Math.PI / 2]}
             />
             <mesh
-            castShadow
-            receiveShadow
+            //castShadow
+            //receiveShadow
             geometry={nodes.Village_Doors_22_Village_W_D_Wood_04_001.geometry}
             material={materials.Windows_Doors_Wood}
             position={[-11730.08, -55935.88, -6.6]}
