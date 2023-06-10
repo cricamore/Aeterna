@@ -87,19 +87,19 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
           material={materials.Stone_Walls}
         />
         <mesh
-          //castShadow
+          castShadow
           receiveShadow
           geometry={nodes.Plane012_1.geometry}
           material={materials.Plinths}
         />
         <mesh
-          //castShadow
+          castShadow
           receiveShadow
           geometry={nodes.Plane012_2.geometry}
           material={materials.Doorway}
         />
         <mesh
-          //castShadow
+          castShadow
           receiveShadow
           geometry={nodes.Plane012_3.geometry}
           material={materials.Doorway_Surround}

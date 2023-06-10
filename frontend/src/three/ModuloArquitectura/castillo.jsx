@@ -194,7 +194,6 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
           position={[-2.86, 3.7, -1.94]}
           scale={[0.12, 1, 0.12]}
         />
-
         {/* <mesh
           castShadow
           receiveShadow

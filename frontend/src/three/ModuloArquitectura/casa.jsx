@@ -97,8 +97,8 @@ export function Casa({leccionesCompletadas, setLeccionesCompletadas},props) {
             rotation={[0, 0, Math.PI / 2]}
             />
             <mesh
-            //castShadow
-            //receiveShadow
+            castShadow
+            receiveShadow
             geometry={nodes.Village_Doors_22_Village_W_D_Wood_04_001.geometry}
             material={materials.Windows_Doors_Wood}
             position={[-11730.08, -55935.88, -6.6]}
