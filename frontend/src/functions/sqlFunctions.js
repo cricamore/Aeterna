@@ -1,6 +1,6 @@
 async function createUser_Front(nombre, apellido, email, password) {
     try {
-        const response = await fetch(`http://localhost:4000/api/registrarusuario`, {
+        const response = await fetch(`http://aeterna-production.up.railway.app/api/registrarusuario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function createUser_Front(nombre, apellido, email, password) {
 async function login_usuario(email, password) {
     console.log(email)
     try {
-        const response = await fetch(`http://localhost:4000/api/loginusuario`, {
+        const response = await fetch(`http://aeterna-production.up.railway.app/api/loginusuario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ async function obtenerProgreso(componente,email) {
     console.log("componente",componente)
     console.log("aaa",email)
     try {
-      const response = await fetch(`http://localhost:4000/api/obtenerprogreso`, {
+      const response = await fetch(`http://aeterna-production.up.railway.app/api/obtenerprogreso`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ async function obtenerProgreso(componente,email) {
     console.log("componente2",componente)
     console.log("guardar",email)
     try {
-      const response = await fetch(`http://localhost:4000/api/guardarprogreso`, {
+      const response = await fetch(`http://aeterna-production.up.railway.app/api/guardarprogreso`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ async function obtenerProgreso(componente,email) {
   async function obtenerNombre(email) {
     console.log("guardar",email)
     try {
-      const response = await fetch(`http://localhost:4000/api/obtenernombre`, {
+      const response = await fetch(`http://aeterna-production.up.railway.app/api/obtenernombre`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

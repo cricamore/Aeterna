@@ -175,7 +175,7 @@ function CameraUpdater({ activeLessonIndex }) {
         x: targetRotation[0],
         y: targetRotation[1],
         z: targetRotation[2],
-        duration: 2, // Duración de la animación en segundos
+        duration: 1.5, // Duración de la animación en segundos
       });
     };
   
