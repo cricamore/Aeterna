@@ -98,6 +98,8 @@ router.post('/guardarprogreso', (req, res) => {
     updateField = { progresoArquitectura: progreso };
   } else if (componente === 'cultura') {
     updateField = { progresoCultura: progreso };
+  } else if (componente === 'arte') {
+    updateField = { progresoArte: progreso };
   } else {
     return res.json({ message: 'Componente inválido' });
   }
@@ -124,7 +126,10 @@ router.post('/obtenerprogreso', (req, res) => {
     progressField = 'progresoArquitectura';
   } else if (componente === 'cultura') {
     progressField = 'progresoCultura';
-  } else {
+  } else if (componente === 'arte'){
+    progressField = 'progresoArte';
+  } 
+  else {
     return res.json({ message: 'Componente inválido' });
   }
 
