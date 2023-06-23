@@ -13,6 +13,7 @@ import papel2 from '../../../public/static/textures/Arte/Puente/papel2.png';
 import { Html } from '@react-three/drei';
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
 import Image from 'next/image';
+import { useThree } from "@react-three/fiber";
 
 const style = {
   position: 'absolute',
@@ -53,6 +54,14 @@ export function Bridge({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2];
 
+  const { gl } = useThree();
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
+
   const handleClick = () => {
     setModalOpen(true);
     console.log('hola')
@@ -82,7 +91,12 @@ export function Bridge({leccionesCompletadas, setLeccionesCompletadas},props) {
   };
 
   return (
-    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
+    <group {...props} 
+    dispose={null} 
+    onClick={(e) => {e.stopPropagation()}} 
+    onPointerEnter={handleMouseEnter}
+    onPointerLeave={handleMouseLeave}
+    >
       <group
         // position={[-45.367, 24.704, 102.133]}
         rotation={[Math.PI / 2, 0, 0]}

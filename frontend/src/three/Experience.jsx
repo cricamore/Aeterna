@@ -2,6 +2,9 @@ import { OrbitControls, Sky } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import { Canvas } from '@react-three/fiber'
 import Terrain from './terrain'
+import { Suelo } from './suelo';
+import Plano from '../../src/three/ModuloArte/plano';
+import { Coliseo } from './coliseo';
 
 
 
@@ -26,10 +29,11 @@ export default function Experience() {
             {/* <Perf position="top-right" /> */}
             <OrbitControls makeDefault />
             <spotLight position={[30, 20, 30]} intensity={0.2} />
-            <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />
+            <directionalLight castShadow position={[-30, 30, -30]} intensity={1.2} />
             <ambientLight intensity={0.2} />
-
             <Terrain/>
+            {/* <Suelo /> */}
+            {/* <Plano/> */}
             <Sky/>
         </Canvas>
         

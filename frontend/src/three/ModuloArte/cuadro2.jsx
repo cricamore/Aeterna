@@ -9,6 +9,7 @@ import papel2 from '../../../public/static/textures/Arte/Cuadro2/papel2.png';
 import { Html } from '@react-three/drei';
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
 import Image from 'next/image';
+import { useThree } from "@react-three/fiber";
 
 const style = {
   position: 'absolute',
@@ -48,6 +49,14 @@ export function Cuadro2({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2];
+  
+  const { gl } = useThree();
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -90,6 +99,8 @@ export function Cuadro2({leccionesCompletadas, setLeccionesCompletadas},props) {
       <mesh
         castShadow
         receiveShadow
+        onPointerEnter={handleMouseEnter}
+        onPointerLeave={handleMouseLeave}
         // onClick={handleClick}
         geometry={nodes.node_id4.geometry}
         material={materials["32"]}

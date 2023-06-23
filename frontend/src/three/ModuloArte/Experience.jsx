@@ -51,6 +51,8 @@ export default function Experience({activeLessonIndex, leccionesCompletadas, set
             </mesh>
             <mesh>
                 <Arbol position={[0,2.6, 0.3]} />
+                <Arbol position={[-4.7,2.3, 0.3]} />
+                <Arbol position={[-4.7,2.3, -2.5]} />
                 <Arbol position={[4,2.4, -8]} />
                 <Arbol position={[-4,2.4, -8]} />
                 <Arbol position={[-5,2.4, -10]} />
@@ -59,6 +61,8 @@ export default function Experience({activeLessonIndex, leccionesCompletadas, set
                 <Arbol position={[3,2.4, -10]} />
                 <Arbol position={[5,2.4, -3]} />
                 <Arbol position={[5,2.4, -1]} />
+                <Arbol position={[2.5,2.4, -8]} />
+                <Arbol position={[-2,2.4, -7.5]} />
                 {/* <Tree scale={35} position={[1,5.1,-6]}/> */}
                 <Bonsai position={[6,4.5,2.5]} rotation-y={-Math.PI*0.5} scale={0.9}/>
             </mesh>

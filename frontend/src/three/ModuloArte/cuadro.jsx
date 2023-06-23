@@ -9,6 +9,7 @@ import papel2 from '../../../public/static/textures/Arte/Cuadro1/papel2.png';
 import { Html } from '@react-three/drei';
 import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, position, Button } from "@mui/material";
 import Image from 'next/image';
+import { useThree } from "@react-three/fiber";
 
 const style = {
   position: 'absolute',
@@ -48,6 +49,14 @@ export function Cuadro({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2];
+  
+  const { gl } = useThree();
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -78,24 +87,31 @@ const handlePreviousImage = () => {
 };
 
   return (
-    <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
+    <group {...props} 
+    dispose={null} 
+    >
       <mesh
         // castShadow
         // receiveShadow
-        onClick={handleClick}
+        // onClick={handleClick}
         geometry={nodes.mesh_id1.geometry}
         material={materials["26"]}
         scale={[1.2, 0.63, 0.001]}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        // onClick={handleClick}
-        geometry={nodes.node_id4.geometry}
-        material={materials["32"]}
-        rotation={[Math.PI / 2, 0, 0]}
-        scale={0.005}
-      />
+      <group onClick={(e) => {e.stopPropagation()}}>
+        <mesh
+          castShadow
+          receiveShadow
+          onPointerEnter={handleMouseEnter}
+          onPointerLeave={handleMouseLeave}
+          onClick={handleClick}
+          geometry={nodes.node_id4.geometry}
+          material={materials["32"]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={0.005}
+        />
+      </group>
+      
       <Html>
           {modalOpen && (
               <div style={style}>
