@@ -56,75 +56,75 @@ export default function Evaluacion() {
   //Preguntas de la evaluacion
   const questions = [
     {
-      text: "¿Cuál era la función principal de las torres medievales en la ciudad de Roma?",
+      text: "¿Qué elementos caracterizan el diseño de los puentes romanos? ",
       options: [
-        { id: 0, text: "Defender los feudos", isCorrect: true },
-        { id: 1, text: "Albergar a la nobleza romana", isCorrect: false },
-        { id: 2, text: "Señalizar peligros", isCorrect: false },
-        { id: 3, text: "Celebrar ceremonias religiosas", isCorrect: false },
+        { id: 0, text: "Arcos romanos", isCorrect: false },
+        { id: 1, text: "Inscripciones", isCorrect: false },
+        { id: 2, text: "Esculturas", isCorrect: false },
+        { id: 3, text: "Todas las anteriores", isCorrect: true },
       ],
     },
     {
-      text: "¿Cuáles fueron los materiales utilizados en la construcción del Coliseo Romano?",
+      text: "¿Qué conmemoran las inscripciones y esculturas en los puentes romanos?",
       options: [
-        { id: 0, text: "Bloques de travertino, hormigón y madera", isCorrect: true },
-        { id: 1, text: "Ladrillo, piedra y estuco", isCorrect: false },
-        { id: 2, text: "Mármol y hormigón", isCorrect: false },
-        { id: 3, text: "Madera, ladrillo y estuco", isCorrect: false },
+        { id: 0, text: "Emperadores", isCorrect: false },
+        { id: 1, text: "Dioses", isCorrect: false },
+        { id: 2, text: "Eventos importantes", isCorrect: false },
+        { id: 3, text: "Todas las anteriore", isCorrect: true },
       ],
     },
     {
-      text: "¿Qué tipo de eventos tenían lugar en el Coliseo Romano?",
+      text: "¿Dónde se encontró la pintura de las Bodas Aldobrandinas?",
       options: [
-        { id: 0, text: "Ceremonias religiosas públicas", isCorrect: false },
-        { id: 1, text: "Luchas de gladiadores y espectáculos públicos", isCorrect: true },
-        { id: 2, text: "Procesiones y sacrificios de animales", isCorrect: false },
-        { id: 3, text: "Exhibiciones de arte y música", isCorrect: false },
+        { id: 0, text: "Monte Esquilino", isCorrect: true },
+        { id: 1, text: "Pompeya", isCorrect: false },
+        { id: 2, text: "Jardines de Mecenas", isCorrect: false },
+        { id: 3, text: "Santa María la Mayor", isCorrect: false },
       ],
     },
     {
-      text: "¿Cuál era la función principal de la sala principal (cella) en un templo romano?",
+      text: "¿Dónde se encuentra actualmente la pintura de las Bodas Aldobrandinas?",
       options: [
-        { id: 0, text: "Albergar la imagen de culto de una deidad", isCorrect: true },
-        { id: 1, text: "Celebrar ceremonias religiosas al aire libre", isCorrect: false },
-        { id: 2, text: "Almacenar equipos y ofrendas para el templo", isCorrect: false },
-        { id: 3, text: "Realizar sacrificios de animales en el altar", isCorrect: false },
+        { id: 0, text: "En la finca del cardenal Aldobrandini", isCorrect: false },
+        { id: 1, text: "En propiedad del pintor Camuccini", isCorrect: false },
+        { id: 2, text: "En los Museos Vaticanos", isCorrect: true },
+        { id: 3, text: "En propiedad del banquero Vicente Nielli", isCorrect: false },
       ],
     },
     {
-      text: "¿Dónde tenían lugar las ceremonias religiosas públicas en la antigua Roma?",
+      text: "¿Quién encargó la obra “Paris juzgando a las tres Diosas” a Rubens?",
       options: [
-        { id: 0, text: "En el edificio del templo", isCorrect: false },
-        { id: 1, text: "Dentro de la cella del templo", isCorrect: false },
-        { id: 2, text: "Al aire libre, no dentro del templo", isCorrect: true },
-        { id: 3, text: "En un santuario aparte del templo", isCorrect: false },
+        { id: 0, text: "Felipe IV", isCorrect: true },
+        { id: 1, text: "Felipe V", isCorrect: false },
+        { id: 2, text: "Augusto", isCorrect: false },
+        { id: 3, text: "Felipe IV", isCorrect: false },
       ],
     },
     {
-      text: "¿Cómo evolucionaron las viviendas romanas a lo largo del tiempo?",
+      text: "¿Qué atributos acompañan a las tres diosas en la obra “Paris juzgando a las tres Diosas”?",
       options: [
-        { id: 0, text: "De una cabaña redonda a una domus romana", isCorrect: true },
-        { id: 1, text: "De una casa de madera a una casa de piedra", isCorrect: false },
-        { id: 2, text: "De una casa unifamiliar a un complejo de apartamentos", isCorrect: false },
-        { id: 3, text: "De una casa simple a una casa con chimenea", isCorrect: false },
+        { id: 0, text: "El escudo de Atenea", isCorrect: false },
+        { id: 1, text: "El cupido de Afrodita", isCorrect: false },
+        { id: 2, text: "El pavo real de Hera", isCorrect: false },
+        { id: 3, text: "Todas las anteriores", isCorrect: true },
       ],
     },
     {
-      text: "¿Qué factor reflejaba la clase social del propietario en las viviendas romanas?",
+      text: "¿En qué se inspiró la escultura romana?",
       options: [
-        { id: 0, text: "El tamaño de la vivienda", isCorrect: false },
-        { id: 1, text: "La ubicación de la vivienda", isCorrect: false },
-        { id: 2, text: "Los materiales utilizados en la vivienda", isCorrect: true },
-        { id: 3, text: "El número de habitaciones en la vivienda", isCorrect: false },
+        { id: 0, text: "En la escultura griega", isCorrect: false },
+        { id: 1, text: "En la escultura etrusca", isCorrect: false },
+        { id: 2, text: "En el mundo helenístico griego", isCorrect: false },
+        { id: 3, text: "Todas las anteriores", isCorrect: true },
       ],
     },
     {
-      text: "¿Cómo se calentaban las viviendas romanas sin chimenea?",
+      text: "¿Cuáles fueron los materiales más utilizados en el retrato romano?",
       options: [
-        { id: 0, text: "Con hornos fijos de leña construidos bajo la casa", isCorrect: true },
-        { id: 1, text: "Utilizando sistemas de calefacción central", isCorrect: false },
-        { id: 2, text: "Quemando carbón en el interior de la casa", isCorrect: false },
-        { id: 3, text: "Recurriendo a estufas de gas portátiles", isCorrect: false },
+        { id: 0, text: "Bronce", isCorrect: false },
+        { id: 1, text: "Mármol", isCorrect: false },
+        { id: 2, text: "Oro", isCorrect: false },
+        { id: 3, text: "A y B son correctas", isCorrect: true },
       ],
     },
   ];
@@ -160,7 +160,7 @@ export default function Evaluacion() {
       >
         <Box sx={style}>
           <div className="App">
-            <h1>Evaluacion Arquitectura</h1>
+            <h1>Evaluacion Arte</h1>
 
             <h2>Puntaje: {score}</h2>
 
