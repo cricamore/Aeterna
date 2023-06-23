@@ -75,8 +75,8 @@ export function Coliseo(props) {
       onPointerLeave={handleMouseLeave}
     >
       <mesh
-        // castShadow
-        // receiveShadow
+        castShadow
+        receiveShadow
         geometry={nodes["10064_colosseum_v1_Iteration0"].geometry}
         material={materials["10064_colosseum"]}
         rotation={[0, 1.57, 0]}

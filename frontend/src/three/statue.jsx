@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useThree } from "@react-three/fiber";
 
 export function Statue(props) {
-  const { nodes, materials } = useGLTF("/static/estatua.glb");
+  const { nodes, materials } = useGLTF("/static/mars.glb");
   const router = useRouter()
   const { gl } = useThree();
 
@@ -21,7 +21,7 @@ export function Statue(props) {
   };
 
   const handleClick = () => {
-    router.push("/cultura");
+    router.push("/arte");
   };
 
   return (
@@ -35,11 +35,14 @@ export function Statue(props) {
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.defaultobject.geometry}
-        material={materials.DefaultMaterial}
+        onClick={handleClick}
+        geometry={nodes.mars.geometry}
+        material={materials["Material.001"]}
+        position={[0, 2.5, 1.1]}
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
       />
     </group>
   );
 }
 
-useGLTF.preload("/static/estatua.glb");
+useGLTF.preload("/static/mars.glb");
