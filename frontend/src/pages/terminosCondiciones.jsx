@@ -146,7 +146,7 @@ export default function TerminosCondiciones () {
 
               <br />
               
-              Nuestra aplicación se proporciona "tal cual" y no ofrecemos garantías de ningún tipo, 
+              Nuestra aplicación se proporciona tal cual y no ofrecemos garantías de ningún tipo, 
               expresas o implícitas, respecto a su funcionamiento, disponibilidad o contenido. 
               No seremos responsables por ningún daño directo, indirecto, incidental, especial o 
               consecuente que surja del uso o la imposibilidad de uso de nuestra aplicación.
