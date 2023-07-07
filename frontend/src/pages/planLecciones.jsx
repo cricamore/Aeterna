@@ -1,12 +1,13 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Box, Typography, Button } from '@mui/material';
+import { List, ListItem, ListItemText, Box, Typography, Button,CircularProgress } from '@mui/material';
 import roma from '../images/roma.jpg' //frontend/src/pages/planLecciones.jsx
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 import { url } from 'url';
-// import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const PlanLecciones = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const leccionesArq = [
     { id: 1, titulo: 'Lección 1: Hogares'},
     { id: 2, titulo: 'Lección 2: Torres'},
@@ -22,15 +23,16 @@ const PlanLecciones = () => {
   ];
 
   const leccionesArt = [
-    { id: 1, titulo: 'Lección 1: Por estrenarse'},
-    { id: 2, titulo: 'Lección 2: Por estrenarse'},
-    { id: 3, titulo: 'Lección 3: Por estrenarse'},
-    { id: 4, titulo: 'Lección 4: Por estrenarse'}
+    { id: 1, titulo: 'Lección 1: Paris y las diosas'},
+    { id: 2, titulo: 'Lección 2: Bodas aldobrandinas'},
+    { id: 3, titulo: 'Lección 3: Escultura romana'},
+    { id: 4, titulo: 'Lección 4: Puente romano'}
   ];
 
   const router = useRouter();
 
   const handleClick = () => {
+    setIsLoading(true);
     router.push('/main');
   };
 
@@ -47,7 +49,7 @@ const PlanLecciones = () => {
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" padding="10px">
-          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "300px", marginRight: '20px', flexDirection: "column" }}>
+          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "auto", marginRight: '20px', flexDirection: "column" }}>
             <Typography sx={{color:'#D4AF37', fontFamily:'Roboto, sans-serif', fontWeight:'bold', fontSize:24, marginBottom: '-10px'}}>
               Módulo Arquitectura
             </Typography>
@@ -71,7 +73,7 @@ const PlanLecciones = () => {
               ))}
             </ul>
           </Box>
-          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "300px", flexDirection: "column" }}>
+          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "310px", flexDirection: "column" }}>
             <Typography sx={{color:'#D4AF37', fontFamily:'Roboto, sans-serif', fontWeight:'bold', fontSize:24, marginBottom: '-10px'}}>
               Módulo Arte
             </Typography>
@@ -86,6 +88,12 @@ const PlanLecciones = () => {
         </Box>
         <Button variant="contained" sx={{ mt:10, marginBottom:4}} onClick={handleClick}>Página principal</Button>
       </Box>
+
+      {isLoading && (
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CircularProgress color="primary" />
+        </Box>
+      )}
     </div>
   );
 };

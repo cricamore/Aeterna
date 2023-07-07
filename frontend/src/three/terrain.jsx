@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { DoubleSide, RepeatWrapping } from "three";
 import { useTexture, Float, Html } from "@react-three/drei";
@@ -7,39 +7,24 @@ import { Coliseo } from "./coliseo";
 import { Suelo } from "./suelo";
 import { Derecho } from "./derecho";
 import { Arbol } from '../../src/three/ModuloCultura/arbol';
+import { Bonsai } from '../../src/three/ModuloCultura/bonsai';
 
-export default function Terrain() {
+export default function Terrain({setIsLoading}) {
   const PATH = "/static/textures/Grass_005_SD/";
 
-  // const props = useTexture({
-  //   map: PATH + "color.jpg",
-  //   displacementMap: PATH + "height.png",
-  //   normalMap: PATH + "normal.jpg",
-  //   roughnessMap: PATH + "roughness.jpg",
-  //   aoMap: PATH + "ao.jpg"
-  // });
-
-  // props.map.repeat.set(86, 86);
-  // props.map.wrapS = props.map.wrapT = RepeatWrapping;
-
-  // props.displacementMap.repeat.set(86, 86);
-  // props.displacementMap.wrapS = props.displacementMap.wrapT = RepeatWrapping;
-
-  // props.normalMap.repeat.set(86, 86);
-  // props.normalMap.wrapS = props.normalMap.wrapT = RepeatWrapping;
-
-  // props.aoMap.repeat.set(86, 86);
-  // props.aoMap.wrapS = props.aoMap.wrapT = RepeatWrapping;
-
-  // props.roughnessMap.repeat.set(86, 86);
-  // props.roughnessMap.wrapS = props.roughnessMap.wrapT = RepeatWrapping;
-
   const handleArquitecturaClick = () => {
+    setIsLoading(true);
     window.location.href = "/arquitectura";
   };
 
   const handleCulturaClick = () => {
+    setIsLoading(true);
     window.location.href = "/cultura";
+  };
+
+  const handleArteClick = () => {
+    setIsLoading(true);
+    window.location.href = "/arte";
   };
 
   useEffect(() => {
@@ -57,27 +42,31 @@ export default function Terrain() {
     } else if (target.classList.contains("cultura-text")) {
       handleCulturaClick();
     }
+    else if (target.classList.contains("arte-text")){
+      handleArteClick();
+    }
   };
 
   return (
     <>
       <group>
         <mesh>
-          <Arbol position={[0,1.3,0]}scale={0.7}/>
+          {/* <Arbol position={[0,1.3,0]}scale={0.7}/> */}
           <Arbol position={[4,1.3,0]}scale={0.7}/>
-          <Arbol position={[4,1.3,2]}scale={0.7}/>
-          <Arbol position={[2,1.3,2]}scale={0.7}/>
-          <Arbol position={[-2,1.3,2]}scale={0.7}/>
-          <Arbol position={[-4,1.3,2]}scale={0.7}/>
+          {/* <Arbol position={[4,1.3,2]}scale={0.7}/> */}
+          {/* <Arbol position={[2,1.3,2]}scale={0.7}/> */}
+          {/* <Arbol position={[-2,1.3,2]}scale={0.7}/> */}
+          <Arbol position={[-3,1.3,2]}scale={0.7}/>
           <Arbol position={[-5,1.3,0]}scale={0.7}/>
-          <Arbol position={[-5,1.3,-2]}scale={0.7}/>
+          {/* <Arbol position={[-5,1.3,-2]}scale={0.7}/> */}
           <Arbol position={[-5,1.3,-9]}scale={0.7}/>
-          <Arbol position={[-3,1.3,-9]}scale={0.7}/>
-          <Arbol position={[0,1.3,-9]}scale={0.7}/>
-          <Arbol position={[3,1.3,-9]}scale={0.7}/>
+          {/* <Arbol position={[-3,1.3,-9]}scale={0.7}/> */}
+          {/* <Arbol position={[0,1.3,-9]}scale={0.7}/> */}
+          {/* <Arbol position={[3,1.3,-9]}scale={0.7}/> */}
           <Arbol position={[5,1.3,-9]}scale={0.7}/>
           <Arbol position={[-1,1.3,-6]}scale={0.7}/>
-          <Arbol position={[-1,1.3,-3]}scale={0.7}/>
+          {/* <Arbol position={[-1,1.3,-3]}scale={0.7}/> */}
+          <Bonsai position={[5.2,3.7,3.1]} rotation-y={-Math.PI*0.5} scale={0.9}/>
         </mesh>
           {/* <planeGeometry args={[1, 1]} /> */}
           <Suelo scale={0.25}/>
@@ -87,13 +76,14 @@ export default function Terrain() {
           // rotation-x={-Math.PI * 1}
           rotation-y={-Math.PI * 0.25}
         >
-          <Statue />
+          <Statue setIsLoading={setIsLoading}/>
         </mesh>
         <mesh>
           <Coliseo
+            setIsLoading={setIsLoading}
             scale={0.07}
             position={[2.5, 0.1, -1]}
-            rotation-y={-Math.PI * 0.7}
+            rotation-y={-Math.PI * 0.7}          
           />
         </mesh>
         <mesh
@@ -101,7 +91,7 @@ export default function Terrain() {
         scale={1.2}
         position={[-2,0.9,5]}
         >
-          <Derecho/>
+          <Derecho setIsLoading={setIsLoading}/>
         </mesh>
         <Float speed={3}>
           <Html
@@ -130,7 +120,7 @@ export default function Terrain() {
           <Html
             position={[-4, 1, -2]}
             center
-            className="cultura-text"
+            className="arte-text"
             style={{
               fontFamily: "Helvetica, Arial",
               fontSize: "40px",
@@ -172,7 +162,10 @@ export default function Terrain() {
             CULTURA
           </Html>
         </Float>
+
       </group>
+
     </>
   );
 }
+

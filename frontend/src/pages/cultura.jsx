@@ -1,4 +1,4 @@
-import { Container, Box, AppBar, Toolbar, Typography, IconButton, Avatar, Paper, Button, Modal, position } from "@mui/material";
+import { Container, Box, AppBar, Toolbar, Typography, IconButton, Avatar, Paper, Button, Modal, position, CircularProgress } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Close from "@mui/icons-material/Close";
 import Image from "next/image";
@@ -9,17 +9,18 @@ import { guardarProgreso, obtenerProgreso,obtenerNombre } from "../functions/sql
 import Experience from "../three/ModuloCultura/Experience";
 import Evaluacion from "../three/ModuloCultura/evaluacion";
 import { useSelector,useDispatch } from 'react-redux';
-
+import LoadingScreen from './loadingScreen'
 
 
 export default function Cultura() {
   const dispatch = useDispatch();
   const email = useSelector(state => state.email);
   const [nombreBaseDatos, setNombreBaseDatos] = useState('');
+  const [isExperienceLoaded, setIsExperienceLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log("soy email",email)
   console.log("soy email",nombreBaseDatos)
-
     
   useEffect(() => {
     const storedEmail = localStorage.getItem('email');
@@ -98,7 +99,7 @@ export default function Cultura() {
   return (
     <div>
       {/* Navbar */}
-      <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '200px', height: '100vh', left: 0 }}>
+      { isExperienceLoaded ? (<AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '200px', height: '100vh', left: 0 }}>
         <Toolbar style={{ display: 'flex', justifyContent: 'center' }}>
           <Box display="flex" alignItems="center" flexDirection="column" mt={4}>
             {/* User */}
@@ -110,13 +111,13 @@ export default function Cultura() {
             </Box>
             {/* Go Home */}
             <Box mt={1}>
-                <Link href='/main' passHref>
+                <Link href='/main' passHref onClick={() => { setIsLoading(true) }}>
                   <Image src={aeterna} width="120" height="80" alt="icon" />
                 </Link>
             </Box>
             <Typography variant="caption" color="textSecondary" sx={{ fontSize: '10px',fontWeight:'bold', textAlign: 'center',color:'#D4AF37' }}> Salir del módulo</Typography>
             <Box component={Paper} elevation={3} mt={4} p={2} sx={{ width: '150px', height:'10px',backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid gray', borderRadius:'20px'}}>
-              <Typography variant="subtitle2" color="inherit" sx={{fontSize:'18px',fontWeight:'bold', color:'#D4AF37', display:'flex', alignItems:'center', justifyContent:'center',width:'100%'}}>CULTURA</Typography>
+              <Typography variant="subtitle2" color="inherit" sx={{fontSize:'18px',fontWeight:'bold', color:'#D4AF37', display:'flex', alignItems:'center', justifyContent:'center',width:'100%'}} onClick={()=>handleCameraMove(4)}>CULTURA</Typography>
             </Box>
             {/* Lecciones*/}
             <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
@@ -186,7 +187,7 @@ export default function Cultura() {
               </Box>
             </Box>
             {/* Cerrar sesion */}
-            <Link href='/' passHref>
+            <Link href='/' passHref onClick={() => { setIsLoading(true) }}>
               <Box mt={3} sx={{Zindex: 9999,display:'flex',maxWidth:'200px', position: 'fixed',bottom: '0', left:'0', right:'0',justifyContent: 'left'}}>
                   <Box component={Paper} elevation={3} p={1} sx={{width: '200px',height:'120px',textAlign: 'center', backgroundColor: '#3f51b5', borderRadius: '100% 100% 0 0'}}>
                     <Typography variant="subtitle2" color="inherit" sx={{height:'100%', fontSize: '20px',color:'#FFBD12' , fontWeight:'bold',display:'flex',alignItems:'center', justifyContent: 'center' }}>CERRAR SESIÓN</Typography>
@@ -195,8 +196,14 @@ export default function Cultura() {
             </Link>
           </Box>
         </Toolbar>
-      </AppBar>
-      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+      </AppBar>) : (<LoadingScreen />) }
+      
+      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas} setIsExperienceLoaded={setIsExperienceLoaded}/>
+      {isLoading && (
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CircularProgress color="primary" />
+        </Box>
+      )}
     </div>
    
   );

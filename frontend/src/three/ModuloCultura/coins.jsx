@@ -10,6 +10,7 @@ import Image from 'next/image';
 import papel1 from '../../../public/static/textures/Sociedad/papel1.png';
 import papel2 from '../../../public/static/textures/Sociedad/papel2.png';
 import papel3 from '../../../public/static/textures/Sociedad/papel3.png';
+import { useThree } from "@react-three/fiber";
 
 const style = {
   position: 'absolute',
@@ -50,6 +51,14 @@ export function Coins({leccionesCompletadas, setLeccionesCompletadas},props) {
   const coinsRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2, papel3];
+  const { gl } = useThree();
+
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -89,13 +98,15 @@ export function Coins({leccionesCompletadas, setLeccionesCompletadas},props) {
         material={materials["93"]}
         position={[-0.15, -0.06, 0.3]}
         scale={0.0014}
+        onPointerEnter={handleMouseEnter}
+        onPointerLeave={handleMouseLeave}
       />
       <Html>
           {modalOpen && (
               <div style={style}>
                 {/* <Modal> */}
                   <Box>
-                    <Image src={images[currentImageIndex]} width={657} height={486} />
+                    <Image src={images[currentImageIndex]} width={657} height={486} priority={true} rel="preload" />
                     <Button
                     size='large'
                     variant="text" 

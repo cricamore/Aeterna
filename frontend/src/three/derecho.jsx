@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { useRouter } from "next/navigation";
 import { useThree } from "@react-three/fiber";
 
-export function Derecho(props) {
+export function Derecho({setIsLoading},props) {
   const { nodes, materials } = useGLTF("/static/leyes.glb");
   const router = useRouter()
   const { gl } = useThree();
@@ -21,6 +21,7 @@ export function Derecho(props) {
   };
 
   const handleClick = () => {
+    setIsLoading(true);
     router.push("/cultura");
   };
 

@@ -9,8 +9,10 @@ import Image from 'next/image';
 import papel1 from '../../../public/static/textures/Templo/papel1.png';
 import papel2 from '../../../public/static/textures/Templo/papel2.png';
 import { Html } from '@react-three/drei';
+import { useThree } from "@react-three/fiber";
 
 export default function Building({leccionesCompletadas, setLeccionesCompletadas},props) {
+  const { gl } = useThree();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -48,6 +50,15 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [papel1, papel2];
 
+    const handleMouseEnter = () => {
+      gl.domElement.style.cursor = "pointer";
+    };
+    const handleMouseLeave = () => {
+      gl.domElement.style.cursor = "auto";
+    };
+
+    
+
     const handleClick = () => {
       setModalOpen(true);
       console.log('hola')
@@ -79,7 +90,11 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
   const { nodes, materials } = useGLTF("/static/Imperial_Temple.glb");
   return (
     <group {...props} dispose={null} onClick={(e) => {e.stopPropagation()}}>
-      <group position={[0, 8.09, 0]} rotation={[0, -0.07, 0]} onClick={handleClick}>
+      <group position={[0, 8.09, 0]} rotation={[0, -0.07, 0]}
+      onPointerEnter={handleMouseEnter}
+      onPointerLeave={handleMouseLeave} 
+      onClick={handleClick}
+      >
         <mesh
           //castShadow
           receiveShadow
@@ -146,7 +161,7 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
                 <div style={style}>
                   {/* <Modal> */}
                     <Box>
-                      <Image src={images[currentImageIndex]} width={657} height={486} />
+                      <Image src={images[currentImageIndex]} width={657} height={486} priority={true} />
                       <Button
                       size='large'
                       variant="text" 

@@ -20,8 +20,8 @@ const style = {
   height:500,
   bgcolor: 'background.paper',
   p: 4,
-  overflow: 'auto',
 };
+
 
 const buttonAvanzar = {
     position: 'absolute',
@@ -117,7 +117,7 @@ const handlePreviousImage = () => {
               <div style={style}>
                 {/* <Modal> */}
                   <Box>
-                    <Image src={images[currentImageIndex]} width={657} height={486} />
+                    <Image src={images[currentImageIndex]} width={657} height={486} priority={true} rel="preload" />
                     <Button
                     size='large'
                     variant="text" 

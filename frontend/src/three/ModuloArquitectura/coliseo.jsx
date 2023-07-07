@@ -11,7 +11,8 @@ import papel2 from '../../../public/static/textures/Coliseo/papel2.png';
 import papel3 from '../../../public/static/textures/Coliseo/papel3.png';
 import { useRouter } from "next/navigation";
 import { Html } from '@react-three/drei';
-
+import { useThree } from "@react-three/fiber";
+import LoadingScreen from '../../pages/loadingScreen'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -51,6 +52,14 @@ export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [papel1, papel2, papel3];
+  const { gl } = useThree();
+
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -85,6 +94,8 @@ export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
       <mesh
         castShadow
         onClick={handleClick}
+        onPointerEnter={handleMouseEnter}
+        onPointerLeave={handleMouseLeave} 
         receiveShadow
         geometry={nodes["10064_colosseum_v1_Iteration0"].geometry}
         material={materials["10064_colosseum"]}
@@ -96,7 +107,7 @@ export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
                 <div style={style}>
                   {/* <Modal> */}
                     <Box>
-                      <Image src={images[currentImageIndex]} width={657} height={486} />
+                      <Image src={images[currentImageIndex]} width={657} height={486} priority={true} />
                       <Button
                       size='large'
                       variant="text" 
