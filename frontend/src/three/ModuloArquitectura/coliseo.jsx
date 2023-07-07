@@ -12,7 +12,7 @@ import papel3 from '../../../public/static/textures/Coliseo/papel3.png';
 import { useRouter } from "next/navigation";
 import { Html } from '@react-three/drei';
 import { useThree } from "@react-three/fiber";
-
+import LoadingScreen from '../../pages/loadingScreen'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -107,7 +107,7 @@ export function Coliseo({leccionesCompletadas, setLeccionesCompletadas},props) {
                 <div style={style}>
                   {/* <Modal> */}
                     <Box>
-                      <Image src={images[currentImageIndex]} width={657} height={486} priority />
+                      <Image src={images[currentImageIndex]} width={657} height={486} priority={true} />
                       <Button
                       size='large'
                       variant="text" 

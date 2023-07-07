@@ -13,7 +13,7 @@ import { Tree } from './tree';
 import { Bonsai } from '../ModuloCultura/bonsai';
 import { Mars } from './mars';
 
-export default function Experience({activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas}){
+export default function Experience({activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas, setIsExperienceLoaded}){
 
     const containerStyles = {
         position: 'fixed',
@@ -23,7 +23,7 @@ export default function Experience({activeLessonIndex, leccionesCompletadas, set
 
     return (
         <>
-        <Canvas style={containerStyles} shadows>
+        <Canvas style={containerStyles} shadows onCreated={() => setIsExperienceLoaded(true)}>
             <ambientLight intensity={0.3} />
             <Sky/>
             {/* <Perf position="top-right" /> */}
@@ -96,9 +96,9 @@ function CameraUpdater({ activeLessonIndex }) {
           case 3: // leccion4 building
             return [2, 4, 0.2];
           case 4: // default
-            return [4, 5, 6];
+            return [4, 4, 6.3];
           default:
-            return [4, 5, 6];
+            return [4, 4, 6.3];
         }
       };
     
@@ -113,9 +113,9 @@ function CameraUpdater({ activeLessonIndex }) {
           case 3: // leccion4 sociedad
             return [0.3, -3.1, 0];
           case 4: //default
-            return [-0.5, 0.4, 0.1];
+            return [-0.3, 0.54, 0.1];
           default:
-            return [-0.5, 0.4, 0.1];
+            return [-0.3, 0.54, 0.1];
         }
       };
   

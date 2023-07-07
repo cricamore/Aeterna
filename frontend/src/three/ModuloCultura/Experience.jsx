@@ -23,7 +23,7 @@ import { Mesita } from './mesita';
 
 
 
-export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas }){
+export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas, setIsExperienceLoaded }){
 
     const containerStyles = {
         position: 'fixed',
@@ -36,7 +36,7 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
   
     return (
         <>
-            <Canvas style={containerStyles} shadows>
+            <Canvas style={containerStyles} shadows onCreated={() => setIsExperienceLoaded(true)}>
               
                 <ambientLight intensity={0.3} />
                 <Sky/>

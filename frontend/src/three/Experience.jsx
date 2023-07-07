@@ -7,12 +7,14 @@ import { Suelo } from './suelo';
 import Plano from '../../src/three/ModuloArte/plano';
 import { Coliseo } from './coliseo';
 import { gsap } from 'gsap';
+import LoadingScreen from '../../src/pages/loadingScreen';
 
 
 
-
-export default function Experience({activeModuleIndex}) {
+export default function Experience({activeModuleIndex,isExperienceLoaded,setIsExperienceLoaded, setIsLoading}) {
     console.log("es el botón", activeModuleIndex)
+    console.log("loaded?",isExperienceLoaded)
+
     const containerStyles = {
         position: 'fixed',
         width: '100%',
@@ -29,6 +31,7 @@ export default function Experience({activeModuleIndex}) {
             far: 200,
             position: [ -0.17, 7, 15 ]
         } }
+        onCreated={() => setIsExperienceLoaded(true)}
         >
             {/* <Perf position="top-right" /> */}
             {/* <OrbitControls makeDefault /> */}
@@ -36,7 +39,7 @@ export default function Experience({activeModuleIndex}) {
             <directionalLight castShadow position={[-30, 30, -30]} intensity={1.2} />
             <ambientLight intensity={0.2} />
             <CameraUpdater activeModuleIndex={activeModuleIndex} />
-            <Terrain/>
+            <Terrain setIsLoading={setIsLoading}/>
             {/* <Suelo /> */}
             {/* <Plano/> */}
             <Sky/>

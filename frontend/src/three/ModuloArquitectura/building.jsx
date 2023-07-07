@@ -161,7 +161,7 @@ export default function Building({leccionesCompletadas, setLeccionesCompletadas}
                 <div style={style}>
                   {/* <Modal> */}
                     <Box>
-                      <Image src={images[currentImageIndex]} width={657} height={486} priority/>
+                      <Image src={images[currentImageIndex]} width={657} height={486} priority={true} />
                       <Button
                       size='large'
                       variant="text" 

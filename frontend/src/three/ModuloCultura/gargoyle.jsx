@@ -104,7 +104,7 @@ const handlePreviousImage = () => {
               <div style={style}>
                 {/* <Modal> */}
                   <Box>
-                    <Image src={images[currentImageIndex]} width={657} height={486} priority />
+                    <Image src={images[currentImageIndex]} width={657} height={486} priority={true} rel="preload" />
                     <Button
                     size='large'
                     variant="text" 

@@ -15,13 +15,25 @@ import { useDispatch } from 'react-redux';
 import store from '../store';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import CircularProgress from '@mui/material/CircularProgress';
 
+
+const Overlay = styled('div')({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
 
 
 export default function Login(){
     const router = useRouter();
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [tipo, setTipo] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
 
     const formik = useFormik({
@@ -54,6 +66,7 @@ export default function Login(){
                 dispatch({ type: 'SET_EMAIL', payload: values.correo });
                 
                 setTimeout(() => {
+                  setIsLoading(true);
                   router.push('/main');
                 }, 2000);
             }
@@ -87,7 +100,7 @@ export default function Login(){
             alignItems: 'center',
             justifyContent: 'center',
             marginTop: '50px'
-            }}> 
+            }}>
                 <Box>
                     <Image src={aeterna} width='150' height='100' alt="icon"/>
                 </Box>
@@ -120,6 +133,13 @@ export default function Login(){
                     </Box>
                 </form>   
             </Box>
+            
+            {isLoading && (
+              <Overlay>
+                <CircularProgress color="primary" />
+              </Overlay>
+            )}
+
             <ToastContainer
                 style={{
                   color: 'white',

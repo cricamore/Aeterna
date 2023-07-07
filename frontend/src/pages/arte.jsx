@@ -1,4 +1,4 @@
-import { Container, Box, AppBar, Toolbar, Typography, IconButton, Avatar, Paper, Button, Modal, position } from "@mui/material";
+import { Container, Box, AppBar, Toolbar, Typography, IconButton, Avatar, Paper, Button, Modal, position, CircularProgress } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Close from "@mui/icons-material/Close";
 import Image from "next/image";
@@ -10,15 +10,17 @@ import Experience from "../three/ModuloArte/Experience";
 import Evaluacion from "../three/ModuloArte/evaluacion";
 import { useRouter } from 'next/router'
 import { useSelector,useDispatch } from 'react-redux';
-
+import LoadingScreen from './loadingScreen'
 
 
 export default function Arte() {
   const email = useSelector(state => state.email);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const [nombreBaseDatos, setNombreBaseDatos] = useState('');
   console.log("soy email",email)
   const [activeLessonIndex, setActiveLessonIndex] = useState(-1);
+  const [isExperienceLoaded, setIsExperienceLoaded] = useState(false);
 
   const [leccionesCompletadas, setLeccionesCompletadas] = useState({
     leccion1: false,
@@ -91,7 +93,7 @@ export default function Arte() {
   return (
     <div>
       {/* Navbar */}
-      <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '200px', height: '100vh', left: 0 }}>
+      { isExperienceLoaded ? (<AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '200px', height: '100vh', left: 0 }}>
         <Toolbar sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center" flexDirection="column" mt={4}>
             {/* User */}
@@ -103,7 +105,7 @@ export default function Arte() {
             </Box>
             {/* Go Home */}
             <Box mt={1}>
-                <Link href='/main' passHref>
+                <Link href='/main' onClick={() => { setIsLoading(true) }} passHref>
                   <Image src={aeterna} width="120" height="80" alt="icon" />
                 </Link>
             </Box>
@@ -179,7 +181,7 @@ export default function Arte() {
               </Box>
             </Box>
             {/* Cerrar sesion */}
-            <Link href='/' passHref>
+            <Link href='/' passHref onClick={() => { setIsLoading(true) }}>
               <Box mt={3} sx={{Zindex: 9999,display:'flex',maxWidth:'200px', position: 'fixed',bottom: '0', left:'0', right:'0',justifyContent: 'left'}}>
                   <Box component={Paper} elevation={3} p={1} sx={{width: '200px',height:'120px',textAlign: 'center', backgroundColor: '#3f51b5', borderRadius: '100% 100% 0 0'}}>
                     <Typography variant="subtitle2" color="inherit" sx={{height:'100%', fontSize: '20px',color:'#FFBD12' , fontWeight:'bold',display:'flex',alignItems:'center', justifyContent: 'center' }}>CERRAR SESIÓN</Typography>
@@ -189,8 +191,14 @@ export default function Arte() {
           </Box>
         </Toolbar>
       </AppBar>
+      ) :  (<LoadingScreen />) }
       {/* Modulo arte */}
-      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
+      <Experience activeLessonIndex={activeLessonIndex} leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas} setIsExperienceLoaded={setIsExperienceLoaded}/>
+      {isLoading && (
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CircularProgress color="primary" />
+        </Box>
+      )}
     </div>
    
   );

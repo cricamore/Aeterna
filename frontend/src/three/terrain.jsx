@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { DoubleSide, RepeatWrapping } from "three";
 import { useTexture, Float, Html } from "@react-three/drei";
@@ -9,15 +9,22 @@ import { Derecho } from "./derecho";
 import { Arbol } from '../../src/three/ModuloCultura/arbol';
 import { Bonsai } from '../../src/three/ModuloCultura/bonsai';
 
-export default function Terrain() {
+export default function Terrain({setIsLoading}) {
   const PATH = "/static/textures/Grass_005_SD/";
 
   const handleArquitecturaClick = () => {
+    setIsLoading(true);
     window.location.href = "/arquitectura";
   };
 
   const handleCulturaClick = () => {
+    setIsLoading(true);
     window.location.href = "/cultura";
+  };
+
+  const handleArteClick = () => {
+    setIsLoading(true);
+    window.location.href = "/arte";
   };
 
   useEffect(() => {
@@ -34,6 +41,9 @@ export default function Terrain() {
       handleArquitecturaClick();
     } else if (target.classList.contains("cultura-text")) {
       handleCulturaClick();
+    }
+    else if (target.classList.contains("arte-text")){
+      handleArteClick();
     }
   };
 
@@ -66,13 +76,14 @@ export default function Terrain() {
           // rotation-x={-Math.PI * 1}
           rotation-y={-Math.PI * 0.25}
         >
-          <Statue />
+          <Statue setIsLoading={setIsLoading}/>
         </mesh>
         <mesh>
           <Coliseo
+            setIsLoading={setIsLoading}
             scale={0.07}
             position={[2.5, 0.1, -1]}
-            rotation-y={-Math.PI * 0.7}
+            rotation-y={-Math.PI * 0.7}          
           />
         </mesh>
         <mesh
@@ -80,7 +91,7 @@ export default function Terrain() {
         scale={1.2}
         position={[-2,0.9,5]}
         >
-          <Derecho/>
+          <Derecho setIsLoading={setIsLoading}/>
         </mesh>
         <Float speed={3}>
           <Html
@@ -109,7 +120,7 @@ export default function Terrain() {
           <Html
             position={[-4, 1, -2]}
             center
-            className="cultura-text"
+            className="arte-text"
             style={{
               fontFamily: "Helvetica, Arial",
               fontSize: "40px",
@@ -151,7 +162,9 @@ export default function Terrain() {
             CULTURA
           </Html>
         </Float>
+
       </group>
+
     </>
   );
 }

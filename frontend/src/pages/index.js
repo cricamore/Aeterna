@@ -279,7 +279,16 @@ const Principal = () => {
                     <Button type="submit" variant="contained" color="primary" fullWidth style={{ fontWeight:'bold', padding: '10px 20px',color: '#D4AF37', borderRadius: '20px', marginBottom: '20px' }}>
                         CREAR CUENTA
                     </Button>
-                    <FormControlLabel control={<input type="checkbox" required />} sx={{color: 'white', marginLeft: '20px'}}label=" Acepto los términos y condiciones" />
+                    <FormControlLabel
+                      control={<input type="checkbox" required />}
+                      label={
+                        <span style={{ display: 'inline-block' }}>
+                          <TerminosCondiciones />
+                        </span>
+                      }
+                      labelPlacement="end"
+                      sx={{ color: 'white', marginLeft: '20px' }}
+                    />
                     </form>
                 </>
             )}

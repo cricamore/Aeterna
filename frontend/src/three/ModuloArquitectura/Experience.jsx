@@ -17,7 +17,7 @@ import { TableroLeccion4 } from './tableroLeccion4';
 import { Arbol } from '../ModuloCultura/arbol';
 import LoadingScreen from '../../pages/loadingScreen';
 
-export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas }) {
+export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas, setIsExperienceLoaded }) {
 
   const containerStyles = {
     position: 'fixed',
@@ -25,8 +25,27 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
     height: '100vh',
   };
 
+  const loadingManager = new THREE.LoadingManager();
+
+  // loadingManager.onStart = function(url, item, total) {
+  //   console.log(`Carga iniciada: ${url}`);
+  // }
+
+  // loadingManager.onProgress = function(url, item, total) {
+  //   console.log(`Carga iniciada: ${url}`);
+  // }
+
+  loadingManager.onLoad = function() {
+    console.log(`Carga completada.`);
+  }
+
+
+  // const gltfLoader = new gltfLoader(loadingManager);
+
+  // const rgbeLoader = new RGBELoader();
+
   return (
-  <Canvas style={containerStyles} shadows={true}>
+  <Canvas style={containerStyles} shadows={true} onCreated={() => setIsExperienceLoaded(true)}>
     {/* <Perf position="top-right" /> */}
     <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />
     <ambientLight intensity={0.3} />
@@ -87,7 +106,7 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
       <Arbol position={[1,2.8, -5]}/>
       <Arbol position={[3,2.4, -8]}/>
     </mesh>
-    <OrbitControls MakeDefault/>
+    {/* <OrbitControls MakeDefault/> */}
   </Canvas>)
 }
 

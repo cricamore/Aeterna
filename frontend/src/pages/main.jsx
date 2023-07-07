@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Box,CircularProgress } from '@mui/material';
 import Image from "next/image";
 import aeterna from "../images/aeterna.png";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -9,15 +9,21 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import StadiumIcon from '@mui/icons-material/Stadium';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import BalanceIcon from '@mui/icons-material/Balance';
+import LoadingScreen from './loadingScreen'
 
 const ToolbarWithLogout = () => {
   const router = useRouter();
   const [activeModuleIndex, setActiveModuleIndex] = useState(-1);
+  const [isExperienceLoaded, setIsExperienceLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleLogout = () => {
-     router.push('/');
+    setIsLoading(true);
+    router.push('/');
   };
 
   const handleLeccion = () => {
+    setIsLoading(true);
     router.push('/planLecciones');
  };
 
@@ -27,8 +33,9 @@ const ToolbarWithLogout = () => {
 
   return (
     <div>
+
         {/* Navbar */}
-        <AppBar position="fixed" color="primary" style={{alignItems: 'center', backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
+        {isExperienceLoaded ? (<AppBar position="fixed" color="primary" style={{alignItems: 'center', backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
             {/* Logo */}
             <Toolbar>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -78,9 +85,17 @@ const ToolbarWithLogout = () => {
                   </Box>
               </Box>
             </Toolbar>
-        </AppBar>
+        </AppBar>) : (<LoadingScreen />)}
+        
+        
         {/* Modulos */}
-        <Experience activeModuleIndex={activeModuleIndex}/>
+        <Experience activeModuleIndex={activeModuleIndex} isExperienceLoaded={isExperienceLoaded} setIsExperienceLoaded={setIsExperienceLoaded} setIsLoading={setIsLoading} />
+    
+        {isLoading && (
+            <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CircularProgress color="primary" />
+            </Box>
+        )}
     </div>
   );
 };
