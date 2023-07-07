@@ -95,8 +95,10 @@ function CameraUpdater({ activeLessonIndex }) {
             return [1, 2, -2];
           case 3: // leccion4 building
             return [2, 4, 0.2];
+          case 4: // default
+            return [4, 5, 6];
           default:
-            return [3, 4, 7];
+            return [4, 5, 6];
         }
       };
     
@@ -110,8 +112,10 @@ function CameraUpdater({ activeLessonIndex }) {
             return [0, -1.9, 0];
           case 3: // leccion4 sociedad
             return [0.3, -3.1, 0];
+          case 4: //default
+            return [-0.5, 0.4, 0.1];
           default:
-            return [0, 0.5, 0];
+            return [-0.5, 0.4, 0.1];
         }
       };
   

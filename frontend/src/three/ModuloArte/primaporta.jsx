@@ -104,7 +104,7 @@ export function Primaporta({leccionesCompletadas, setLeccionesCompletadas},props
             <div style={style}>
               {/* <Modal> */}
                 <Box>
-                  <Image src={images[currentImageIndex]} width={657} height={486} />
+                  <Image src={images[currentImageIndex]} width={657} height={486} priority/>
                   <Button
                   size='large'
                   variant="text" 

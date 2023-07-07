@@ -9,6 +9,7 @@ import { Container, Box, AppBar, Toolbar, Typography, Avatar, Paper, Modal, posi
 import papel1 from '../../../public/static/textures/Torre/papel1.png';
 import papel2 from '../../../public/static/textures/Torre/papel2.png';
 import Image from 'next/image';
+import { useThree } from "@react-three/fiber";
 // import { LeccionContext } from './leccionContext';
 
 const style = {
@@ -47,7 +48,15 @@ const buttonCerrar = {
 export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { gl } = useThree();
   const images = [papel1, papel2];
+
+  const handleMouseEnter = () => {
+    gl.domElement.style.cursor = "pointer";
+  };
+  const handleMouseLeave = () => {
+    gl.domElement.style.cursor = "auto";
+  };
 
   const handleClick = () => {
     setModalOpen(true);
@@ -85,7 +94,11 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
   const { nodes, materials } = useGLTF("/static/castillo.glb");
   return (
     <group {...props} dispose={null}  onClick={(e) => {e.stopPropagation()}}>
-      <group onClick={handleClick}>
+      <group 
+      onClick={handleClick}
+      onPointerEnter={handleMouseEnter}
+      onPointerLeave={handleMouseLeave}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -206,7 +219,7 @@ export function Castillo({leccionesCompletadas, setLeccionesCompletadas},props) 
                 <div style={style}>
                   {/* <Modal> */}
                     <Box>
-                      <Image src={images[currentImageIndex]} width={657} height={486} />
+                      <Image src={images[currentImageIndex]} width={657} height={486} priority />
                       <Button
                       size='large'
                       variant="text" 

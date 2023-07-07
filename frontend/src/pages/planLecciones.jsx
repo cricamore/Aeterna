@@ -47,7 +47,7 @@ const PlanLecciones = () => {
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" padding="10px">
-          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "300px", marginRight: '20px', flexDirection: "column" }}>
+          <Box display="flex" border="1px solid gray" borderRadius="4px" padding="16px" justifyContent="center" alignItems="center" sx={{ width: "auto", marginRight: '20px', flexDirection: "column" }}>
             <Typography sx={{color:'#D4AF37', fontFamily:'Roboto, sans-serif', fontWeight:'bold', fontSize:24, marginBottom: '-10px'}}>
               Módulo Arquitectura
             </Typography>

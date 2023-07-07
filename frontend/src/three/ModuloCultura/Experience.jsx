@@ -21,6 +21,8 @@ import { TableroLeccion4 } from '../ModuloArquitectura/tableroLeccion4';
 import { Coins } from './coins';
 import { Mesita } from './mesita';
 
+
+
 export default function Experience({ activeLessonIndex, leccionesCompletadas, setLeccionesCompletadas }){
 
     const containerStyles = {
@@ -29,10 +31,13 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
         height: '100vh',
     };    
 
-    
+   
+
+  
     return (
         <>
             <Canvas style={containerStyles} shadows>
+              
                 <ambientLight intensity={0.3} />
                 <Sky/>
                 {/* <Perf position="top-right" /> */}
@@ -40,7 +45,7 @@ export default function Experience({ activeLessonIndex, leccionesCompletadas, se
                 <directionalLight castShadow position={[-30, 30, -30]} intensity={1} />
                 <CameraUpdater activeLessonIndex={activeLessonIndex} />
                 <Plano />
-                <mesh scale={0.25} position={[0, 1.6, 3]} rotation-y={-Math.PI*1}>
+                <mesh scale={0.25} position={[0, 1.6, 3]} rotation-y={-Math.PI*1} >
                     <Gargoyle leccionesCompletadas={leccionesCompletadas} setLeccionesCompletadas={setLeccionesCompletadas}/>
                 </mesh>
                 <mesh position={[-6.8, 1.5, 4]} scale={3} rotation-y={Math.PI*0.3} > 
@@ -143,6 +148,8 @@ function CameraUpdater({ activeLessonIndex }) {
             return [2, 2, 0.1];
           case 3: // leccion4 building
             return [1, 2.5, 0.5];
+          case 4: //default
+            return [8, 3, 0];
           default:
             return [8, 3, 0];
         }
@@ -158,6 +165,8 @@ function CameraUpdater({ activeLessonIndex }) {
             return [-Math.PI / 7, -Math.PI / 25, 0];
           case 3: // leccion4 sociedad
             return [Math.PI / 3, -Math.PI / 1.5, Math.PI / 3];
+          case 4: //default
+            return [0, Math.PI / 2, 0];
           default:
             return [0, Math.PI / 2, 0];
         }

@@ -1,5 +1,6 @@
 import Login from "../pages/login";
 import FAQComponent from '../pages/frecuentes';
+import Contacto from '../pages/contacto';
 import TerminosCondiciones from '../pages/terminosCondiciones';
 
 import React, { useState,useEffect } from 'react';
@@ -30,6 +31,7 @@ import Link from 'next/link';
 import Add from '@mui/icons-material/Add';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HelpIcon from '@mui/icons-material/Help';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -42,78 +44,16 @@ import { createUser_Front } from "../functions/sqlFunctions"
 
 import Experience from "../three/Experience";
 
-const EpicBox = styled(Box)(({ theme }) => ({
-  opacity: 0,
-  transform: 'translateY(20px)',
-  transition: 'opacity 0.5s ease, transform 0.5s ease',
-  '&.appear': {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-  backgroundColor: 'rgba(19, 25, 47, 0.9)',
-  padding: '20px',
-  borderRadius: '10px',
-  marginTop: '20px',
-  maxWidth: '800px',
-  margin:'auto'
-}));
-
-const EpicText = styled(Typography)(({ theme }) => ({
-  opacity: 0,
-  transform: 'translateY(40px)',
-  transition: 'opacity 0.5s ease, transform 0.5s ease',
-  '&.appear': {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-  color: '#D4AF37',
-  fontSize: '120px',
-  fontWeight: 'bold',
-  textAlign: 'center',
-  marginTop: '5%',
-  fontFamily: 'Garamond, serif',
-  textShadow:'0px 3px 4px rgba(0, 0, 1.5, 1.5)'
-}));
-
-const EpicText2 = styled(Typography)(({ theme }) => ({
-  opacity: 0,
-  transform: 'translateY(40px)',
-  transition: 'opacity 0.5s ease, transform 0.5s ease',
-  '&.appear': {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-  color: '#FFFFFF',
-  fontSize: '1rem',
-  fontWeight: 'normal',
-  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-  textAlign: 'justify',
-  margin: '10px',
-}));
-
 const Principal = () => {
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [showText, setShowText] = useState(false);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setShowText(true);
-  //   }, 1500); 
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-
   const router = useRouter();
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isFAQOpen, setIsFAQOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const [selectedDay, setSelectedDay] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
-
-  const [valid, setValido] = useState('')
 
   const actualizarDato = (nuevoDato) => {
         setValido(nuevoDato);
@@ -140,6 +80,11 @@ const Principal = () => {
   const handleToggleFAQ = () => {
     console.log("hola, entré a faq")
     setIsFAQOpen(!isFAQOpen);
+  };
+
+  const handleToggleContact = () => {
+    console.log("hola, entré a contact")
+    setIsContactOpen(!isContactOpen);
   };
 
   const formik = useFormik({
@@ -195,10 +140,10 @@ const Principal = () => {
   return (
     <div>
       {/* Navbar */}
-      <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0 }}>
+      <AppBar position="fixed" color="primary" style={{ backgroundColor: '#13192F', width: '175px', height: '100vh', left: 0,alignItems: 'center' }}>
         <Toolbar>
            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <Box sx={{ mt: 3, marginLeft: '-18px'}}>
+             <Box sx={{ mt: 3}}>
                 <Image src={aeterna} width='150' height='100' alt="icon" />
              </Box>
            </div>
@@ -207,7 +152,7 @@ const Principal = () => {
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <IconButton color="inherit" onClick={handleToggleRegister}>
-                <Add style={{ fontSize: '100px' }} />
+                <Add style={{ fontSize: '95px' }} />
                 </IconButton>
                 <Typography variant="subtitle1">CREAR CUENTA</Typography>
             </div>
@@ -216,7 +161,7 @@ const Principal = () => {
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <IconButton color="inherit" onClick={handleToggleLogin}>
-                  <AccountCircle style={{ fontSize: '100px' }} />
+                  <AccountCircle style={{ fontSize: '95px' }} />
                 </IconButton>
                 <Typography variant="subtitle1">INICIAR SESION</Typography>
             </div>
@@ -225,12 +170,20 @@ const Principal = () => {
         <Toolbar>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <IconButton color="inherit" onClick={handleToggleFAQ}>
-                <HelpIcon style={{fontSize: '100px'}}/>
+                <HelpIcon style={{fontSize: '95px'}}/>
               </IconButton>
               <Typography variant="subtitle1">FAQ</Typography>
             </div>
         </Toolbar>
-        {/* REDES SOCIALES */}
+        <Toolbar>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <IconButton color="inherit" onClick={handleToggleContact}>
+                <ContactMailIcon style={{fontSize: '95px'}}/>
+              </IconButton>
+              <Typography variant="subtitle1">CONTACTO</Typography>
+            </div>
+        </Toolbar>
+        {/* REDES SOCIALES
         <Toolbar sx={{ position: 'fixed',bottom: '0',left: 0,width: '175px',justifyContent: 'center',alignItems: 'center',flexDirection: 'column', color: 'white', }}>
           <Typography variant="body" sx={{fontSize:'11px', marginBottom: '5px' }}>
             Nuestras redes sociales
@@ -246,7 +199,7 @@ const Principal = () => {
               <InstagramIcon style={{ fontSize: '30px' }} />
             </IconButton>
           </div>
-        </Toolbar>
+        </Toolbar> */}
 
         {/*Barra desplazadora*/}
         <Drawer anchor="left" open={isDrawerOpen} onClose={isRegisterOpen ? handleCloseRegister : handleCloseLogin}>
@@ -340,29 +293,16 @@ const Principal = () => {
                 <FAQComponent setIsFAQOpen={setIsFAQOpen}/>              
               </div>
         )}
+        {isContactOpen && (
+              <div style={{ position: 'fixed', top: 0, left: '175px', right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 999 }} >
+                <Contacto setIsContactOpen={setIsContactOpen}/>              
+              </div>
+        )}
       </AppBar>
-     {/* <Experience/> */}
+    {/** imagen fondo */}
      <Box sx={{ position: "absolute", top: 0, left: '100px', width: "100%", height: "100%" }}>
       <Image src={fondo} layout="fill" objectFit="cover" display="block" alt="Roma imagen"/>
      </Box>
-     {/* <div style={{position:'fixed',top:0,right:0,bottom:0,left:'175px', display: 'flex', flexDirection: 'column' }}>
-        <EpicText variant="h3" className={showText ? 'appear' : ''}>
-          ANTIGUA ROMA
-        </EpicText>
-        <EpicBox className={showText ? 'appear' : ''}>
-          <EpicText2 variant="subtitle1" className={showText ? 'appear' : ''}>
-              Descubre la grandeza y el esplendor de la Antigua Roma, una civilización que perduró
-              por siglos y dejó un legado imborrable en la historia de la humanidad. Sumérgete en sus
-              calles empedradas y maravíllate con la majestuosidad de sus monumentos, como el Coliseo
-              y el Panteón. Deslúmbrate con la arquitectura de sus magníficos templos y palacios.
-              Explora la riqueza de su cultura, desde las impactantes esculturas hasta los mosaicos que adornan sus villas.
-              Desde las batallas de los gladiadores en el anfiteatro hasta las intrigas políticas en el Senado.
-              La Antigua Roma te espera con sus historias fascinantes y su aura de grandeza.
-              ¡Prepárate para embarcarte en un viaje épico a través del tiempo y descubrir la Antigua Roma
-              en todo su esplendor!
-            </EpicText2>
-        </EpicBox>
-     </div> */}
     </div>
   );
 };

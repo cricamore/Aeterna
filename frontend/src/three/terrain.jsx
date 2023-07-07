@@ -7,32 +7,10 @@ import { Coliseo } from "./coliseo";
 import { Suelo } from "./suelo";
 import { Derecho } from "./derecho";
 import { Arbol } from '../../src/three/ModuloCultura/arbol';
+import { Bonsai } from '../../src/three/ModuloCultura/bonsai';
 
 export default function Terrain() {
   const PATH = "/static/textures/Grass_005_SD/";
-
-  // const props = useTexture({
-  //   map: PATH + "color.jpg",
-  //   displacementMap: PATH + "height.png",
-  //   normalMap: PATH + "normal.jpg",
-  //   roughnessMap: PATH + "roughness.jpg",
-  //   aoMap: PATH + "ao.jpg"
-  // });
-
-  // props.map.repeat.set(86, 86);
-  // props.map.wrapS = props.map.wrapT = RepeatWrapping;
-
-  // props.displacementMap.repeat.set(86, 86);
-  // props.displacementMap.wrapS = props.displacementMap.wrapT = RepeatWrapping;
-
-  // props.normalMap.repeat.set(86, 86);
-  // props.normalMap.wrapS = props.normalMap.wrapT = RepeatWrapping;
-
-  // props.aoMap.repeat.set(86, 86);
-  // props.aoMap.wrapS = props.aoMap.wrapT = RepeatWrapping;
-
-  // props.roughnessMap.repeat.set(86, 86);
-  // props.roughnessMap.wrapS = props.roughnessMap.wrapT = RepeatWrapping;
 
   const handleArquitecturaClick = () => {
     window.location.href = "/arquitectura";
@@ -63,21 +41,22 @@ export default function Terrain() {
     <>
       <group>
         <mesh>
-          <Arbol position={[0,1.3,0]}scale={0.7}/>
+          {/* <Arbol position={[0,1.3,0]}scale={0.7}/> */}
           <Arbol position={[4,1.3,0]}scale={0.7}/>
-          <Arbol position={[4,1.3,2]}scale={0.7}/>
-          <Arbol position={[2,1.3,2]}scale={0.7}/>
-          <Arbol position={[-2,1.3,2]}scale={0.7}/>
-          <Arbol position={[-4,1.3,2]}scale={0.7}/>
+          {/* <Arbol position={[4,1.3,2]}scale={0.7}/> */}
+          {/* <Arbol position={[2,1.3,2]}scale={0.7}/> */}
+          {/* <Arbol position={[-2,1.3,2]}scale={0.7}/> */}
+          <Arbol position={[-3,1.3,2]}scale={0.7}/>
           <Arbol position={[-5,1.3,0]}scale={0.7}/>
-          <Arbol position={[-5,1.3,-2]}scale={0.7}/>
+          {/* <Arbol position={[-5,1.3,-2]}scale={0.7}/> */}
           <Arbol position={[-5,1.3,-9]}scale={0.7}/>
-          <Arbol position={[-3,1.3,-9]}scale={0.7}/>
-          <Arbol position={[0,1.3,-9]}scale={0.7}/>
-          <Arbol position={[3,1.3,-9]}scale={0.7}/>
+          {/* <Arbol position={[-3,1.3,-9]}scale={0.7}/> */}
+          {/* <Arbol position={[0,1.3,-9]}scale={0.7}/> */}
+          {/* <Arbol position={[3,1.3,-9]}scale={0.7}/> */}
           <Arbol position={[5,1.3,-9]}scale={0.7}/>
           <Arbol position={[-1,1.3,-6]}scale={0.7}/>
-          <Arbol position={[-1,1.3,-3]}scale={0.7}/>
+          {/* <Arbol position={[-1,1.3,-3]}scale={0.7}/> */}
+          <Bonsai position={[5.2,3.7,3.1]} rotation-y={-Math.PI*0.5} scale={0.9}/>
         </mesh>
           {/* <planeGeometry args={[1, 1]} /> */}
           <Suelo scale={0.25}/>
@@ -176,3 +155,4 @@ export default function Terrain() {
     </>
   );
 }
+
